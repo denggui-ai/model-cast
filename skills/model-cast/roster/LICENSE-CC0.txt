@@ -1,0 +1,12 @@
+CC0 1.0 Universal (Public Domain Dedication)
+
+The images (roster/*/*.webp) and cards (roster/*/card.json, roster/index.json) in this directory are
+AI-generated depictions of fictional people. To the extent possible under law, the author has waived all
+copyright and related or neighboring rights to them. You can copy, modify, distribute and use them, even for
+commercial purposes, all without asking permission.
+
+Full legal text: https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+These images do not depict any real person and make no claim of resemblance to, or likeness rights of, anyone.
+See the README disclaimer for restrictions on use (no impersonation of real people, no discriminatory
+screening, no unlawful use).
