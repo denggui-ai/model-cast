@@ -52,3 +52,12 @@ def test_contaminated_event_fixture_is_explicitly_separate():
     commands = [event.get("item", {}).get("command", "") for event in events]
     assert any("threadtruth-studio/" in c and "SKILL.md" in c for c in commands)
     assert path.stat().st_size < 2000
+
+
+def test_public_skill_has_no_one_off_implementation_instruction():
+    text = (SKILL / "SKILL.md").read_text()
+    assert "本项目本次实现任务不生图" not in text
+
+
+def test_private_state_directory_remains_ignored():
+    assert "state/" in (ROOT / ".gitignore").read_text().splitlines()
