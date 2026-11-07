@@ -1,2 +1,0 @@
--r skills/model-cast/requirements.txt
-pytest>=8
