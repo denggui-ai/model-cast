@@ -4,10 +4,10 @@ Snapshot tested on macOS with Python 3.14; 2026-11-07.
 
 ```text
 PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider
-238 passed in 27.76s
+240 passed in 35.00s
 ```
 
-This is a fresh full-suite run of the public working tree, not a reused private-worktree result. The 238 cases include the 234 existing T15 cases (the real-event dependency is replaced by an equivalent synthetic case) and four new snapshot-integrity checks. None of these tests invokes image generation.
+This is a fresh full-suite run of the public working tree, not a reused private-worktree result. The 240 cases include the original T15 regression coverage (the real-event dependency is replaced by an equivalent synthetic case) and six public-snapshot integrity checks, including a guard against one-off internal instructions and an explicit private-state ignore rule. None of these tests invokes image generation.
 
 Covered: source/manifest hashes, new-version rejection boundaries, package structure, exact upload set, no-overwrite behavior, synthetic receipts and contamination, image-source checks, and the pinned Lookset exporter. Eval JSON files describe scenarios; this result is not a model-driven execution of every scenario.
 

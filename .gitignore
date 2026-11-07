@@ -10,6 +10,7 @@ outputs/
 output/
 packs/
 private/
+state/
 raw/
 **/quota.jsonl
 **/receipt.json
