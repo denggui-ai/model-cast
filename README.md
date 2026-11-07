@@ -1,88 +1,84 @@
-# model-cast
+# model-cast · V0.2 face-casting experiment
 
-**用自然语言设计一位成年虚拟模特，确认后保存，交给裁光拍商品。**
+用于原创成年虚拟模特选角、人工确认、原图保护和资料包制作的 Codex / Claude Code Skill。
+A review-first workflow for casting original adult fictional models and packaging approved references.
 
-Describe an adult fictional model, review a candidate, save the accepted identity, and reuse it in Caiguang.
+**这是经过脱敏的开发源码分支，不是新的正式 Release。** 现有 `main` 保持原样。资料包格式 V3.0 不等于软件发布版本 v3.0；V0.2 是另一条尚未合并的面部定妆实验线。
 
-`v0.1.0-beta.1` · Source prerelease · Codex · MIT code / CC0 public seeds
+## 选择分支
 
-说需求 → 一张候选 → 按反馈修改 → 确认保存 → 裁光读取人物包。
-
-这是有人工确认的工作流。它复用 [裁光 · Caiguang](https://github.com/denggui-ai/threadtruth-studio) 的人物包接口；不需要改动裁光代码。没有商品图时也能先设计人物。
-
-## 现在可以做什么
-
-- 用用途、气质、参考或日常语言设计人物，不要求用户填写五官参数或 JSON。
-- 从文字生成一张候选，或保存已接受的 AI 人物原图；修改时说明保留与改变的范围。
-- 保存原始身份、可调条件、造型锁与实际接受范围；新表现可以作为补充。
-- 选择两位公共种子 Lina、Jun。它们是共享素材，不是独家模特。
-- 将人物包交给裁光，通过现有 `model_package` 入口拍摄真实商品。
-
-| Lina · AI fictional adult | Jun · AI fictional adult |
+| 公开分支 | 内容与状态 |
 |---|---|
-| ![Lina 的公共正脸参考](skills/model-cast/roster/mc-001/face.webp) | ![Jun 的公共正脸参考](skills/model-cast/roster/mc-002/face.webp) |
+| `opensource/t15-direct-upload` | V3 四张原图直传、双语打包、卡片排版、Lookset D2 导出；自动化结构验证通过 |
+| `opensource/v0.2-face-casting`（本分支） | 独立的面部定妆指导实验；真实鼻尖修改用例未通过；不含 T15 合并结果 |
+| `opensource/development-protocol` | 脱敏后的协作规范；仅文档，不是运行技能 |
 
-上述图片是公共身份参考，**不是本次私人 POC 的人物或成片**。卡片中的年龄、地区、肤色分类与身高是虚构设计描述，不能当作真实身份或测量结果。各角度的发型和动作也可能不同。
+## 功能与边界
 
-## 验证到哪里
+按 C1–C8 / C11 流程记录自有或已授权商品图、比较原创成年候选、人工确认身份、验证商品小试并准备资料包。只对获授权的素材执行操作；不模仿真人或名人。
 
-维护者已完成一条限定 POC：已有 AI 正脸 → 私人人物包 → 裁光 beta.18 导入 → 一张商品图 → 用户接受人物复用。商品主要结构通过初审，留白、光比和细微材质仍待核。没有修改裁光代码。
+本分支提供面部设计指导：澄清用户偏好、区分 Change / Preserve / Allowed coupling / Do not change、单目标迭代、识别副作用和回退。它保留独立开发基线的 V2 ZIP 打包实现，尚未合入 T15 四张原图直传方案；需要 V3 打包时请使用 T15 分支。不要将两个不同分支当成已集成的一套发布版。
 
-这不证明任意文字需求都能一次得到满意面孔，也不保证跨商品锁脸、精确尺码或商业全项 QA。私人 POC 的人物和第三方商品素材不在公开仓库中。[验证范围](docs/VERIFICATION.md)。
+**实验状态：未通过真实鼻尖修改用例的产品验收。** 2026-11-07 的两张已授权测试图均未明确实现鼻尖更圆润；第一轮没有可见眼尾漂移，因此第二轮也不能证明修复了真实副作用。原图和结果仅保留在私人运行目录，不公开。单个用例不证明所有能力无效，也不能据此承诺局部编辑有效。
 
-## 开始使用
+**不承诺像素级锁脸、精确局部修改或任何商品都能成功。** `Preserve` 是提示约束。没有公开任何私人人像、商品图、生成结果、真实回执、额度账本或完整私人运行日志。
 
-需要支持本地技能的 Codex、Python 3.9+、Pillow，以及已安装的 [裁光 beta.18](https://github.com/denggui-ai/threadtruth-studio/releases/tag/v1.0.0-beta.18)。生成时还需要宿主原生 `image_gen` 和可用账户额度。脚本没有独立的生图 API，也不要求填写 API key。
+## 环境
 
-本机验证环境为 macOS arm64、Python 3.14、Pillow 12.1.1。Linux 尚未验证；原生 Windows 不支持当前 `fcntl` 账本。其他 Codex 宿主、版本与新机器发现流程尚未实测。
+- 当前整套工具以 **macOS** 为验证环境；`crop.py` 使用系统 `sips`，卡片排版需要系统中文字体。未宣称 Linux / Windows 全流程可用；不分发字体文件。
+- Python 3.10+；本次在 Python 3.14 上运行测试。
+- Pillow（运行时）与 pytest（测试）。Lookset 导出器已按固定版本包含在 `vendor/lookset`，无需另装 Lookset 才能执行导出验证。
+- 生图宿主兼容基线锁定 **Codex CLI 0.161.0**；其他版本需要重新完成宿主兼容检查，不能静默跳过。
+- 生图需要宿主原生能力、有效账户和单独授权。脚本不会提供独立生图模型或免费额度；本地台账默认 500 是工作流上限，不是账户赠送额度。
 
-先下载本次标签的源码，再按 [离线使用指南](USER-GUIDE.html) 核对依赖与校验值。只复制 `skills/model-cast` 到本地技能目录；不要把整个仓库当成运行技能。
-
-在源码仓库目录运行以下命令会安装技能；如果目标已经存在，它会停止，先按指南备份旧版：
+## 获取与安装
 
 ```sh
-python3 - <<'PY'
+git clone --branch opensource/v0.2-face-casting --single-branch https://github.com/denggui-ai/model-cast.git
+cd model-cast
+python3 -m venv .venv
+. .venv/bin/activate
+python3 -m pip install -r requirements-dev.txt
+shasum -a 256 -c SHA256SUMS
+```
+
+仅将 `skills/model-cast` 复制到技能目录，不复制整个源码仓库；若已有安装，先在外部保留备份，不覆盖：
+
+```sh
+python3 - <<'INSTALL'
 from pathlib import Path
 import shutil
 source = Path('skills/model-cast')
 target = Path.home() / '.agents/skills/model-cast'
 if not (source / 'SKILL.md').is_file():
-    raise SystemExit('Run this from the downloaded model-cast source directory.')
+    raise SystemExit('Run from the source repository.')
 if target.exists() or target.is_symlink():
-    raise SystemExit('Existing installation found. Back it up before replacing it.')
+    raise SystemExit('Existing skill found; back it up before installing.')
 target.parent.mkdir(parents=True, exist_ok=True)
 shutil.copytree(source, target)
 print(target)
-PY
+INSTALL
 ```
 
-本地发现位置参考 [OpenAI 技能文档](https://learn.chatgpt.com/docs/build-skills#where-to-save-skills)。在新聊天中查看技能列表；未出现时重启 Codex。这次发布没有改动你的全局配置，也不自动安装裁光或 Python 依赖。
+技能位置参考 [官方技能文档](https://learn.chatgpt.com/docs/build-skills#where-to-save-skills)。本仓库不会自动修改全局配置。
 
-安全的第一句话：
+开始时可以说：
 
-> 用 $model-cast 帮我设计一位给通勤女装拍图的成年虚拟模特，先聊人物方向，不生成图片。
+> 用 $model-cast 为我的自有商品线规划一位原创成年虚拟模特。先确认输入和计划，不生成图片。
 
-预期得到一个简短方向和必要的关键澄清，不调用生图。缺少裁光时仍可聊方案；保存与生成需先补齐接口。准备好后再说“按这个方向生成一张候选，我确认后保存”。
+运行目录 `RUN` 和资料包输出目录应在源码仓库之外。生成、外部上传和继续重试都需要明确授权；保留原图及所有结果。`references/pack-manifest.example.json` 仅供源码仓库中的合成夹具测试；实际使用须填写自己的已授权来源和真实校验值。身份锁示例中的全零/全一哈希是占位值，不能当作素材证据。卖家文案模板中的案例和测试描述不得未经核实复制成对自己产品的承诺。
 
-## 数据与许可
-
-私人任务位于技能仓库外，保留原图、请求、账本、候选与人物包；默认不会自动删除或公开。实际生成会将提示词与所选参考交给宿主的 OpenAI 生图服务，费用、配额和服务端留存由宿主账户政策决定。脚本没有网络请求或遥测；在 Codex 中的对话和文件读取仍受宿主数据政策约束。
-
-代码和说明使用 [MIT](LICENSE)。两位公共种子的图片、卡片与索引沿用 [CC0-1.0](skills/model-cast/roster/LICENSE-CC0.txt)。裁光是独立依赖，遵守其自身许可。私人输入与生成结果不会因为保存或使用本项目而被授予 CC0；第三方权利也不会被此许可覆盖。人物是 AI 虚构成年人，不保证与现实人物绝无相似。
-
-## 开发与反馈
-
-运行时位于 `skills/model-cast`；测试、评测定义和发布说明留在仓库根目录。脚本的 `--threadtruth` 必须指向实际可用的裁光技能目录，不能填插件容器的父目录。完整命令见 [私人流程](skills/model-cast/references/private-workflow.md)。
-
-安装测试依赖后，指定裁光目录并执行：
+## 测试
 
 ```sh
-python3 -m pip install -r requirements-dev.txt
-MODEL_CAST_THREADTRUTH="$THREADTRUTH" PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider
+PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider
+git diff --check
 ```
 
-`THREADTRUTH` 由你填入实际路径。未设置时依赖裁光的测试会跳过，不能把跳过计为通过。测试使用合成色块，不会生图或证明视觉质量。
+测试只使用小尺寸合成色块和合成事件，不生图、不访问私人 RUN。评测 JSON 是场景定义，不等于已经跑过真实模型评测。验证范围与当前结果见 [VERIFICATION](docs/VERIFICATION.md)。
 
-[使用、升级与卸载指南](USER-GUIDE.html) · [验证范围](docs/VERIFICATION.md) · [变更记录](CHANGELOG.md) · [提交问题](https://github.com/denggui-ai/model-cast/issues)
+## 许可与贡献
 
-反馈只需版本、系统、操作和脱敏错误；请勿上传私人脸图、完整提示词、密钥或账户信息。
+原创代码与文档沿用 [MIT](LICENSE)；vendored Lookset 仍为 Apache-2.0，保留其原许可证和来源信息，见 [第三方说明](skills/model-cast/THIRD_PARTY_NOTICES.md)。旧公开 `main` 的种子阵容不在此分支工作树内，既有公开历史保留；不将私人素材授权为 MIT 或 CC0。
+
+反馈时仅提供脱敏步骤和错误，不上传脸图、商品素材、完整私有提示词、回执或凭证。参见 [贡献说明](CONTRIBUTING.md) 和 [公开分支说明](docs/RELEASE-NOTES.md)。

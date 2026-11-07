@@ -1,0 +1,33 @@
+How to use: put your clothes on the model Yuning
+
+This method is not fully verified yet: so far it has been tested only twice, on ChatGPT Pro, and both times it worked. Other ChatGPT plans have not been tested.
+
+[Three steps to one image]
+1. Open the ChatGPT website and start a new chat.
+2. Upload two things:
+   - the zip file in the "2_Upload_to_AI" folder (do not unzip it; upload the whole file);
+   - your own product photo (a front photo works best).
+3. In the same message box, write one sentence saying what you want, and send it together with the two uploads. You do not need to copy any prompt. For example:
+   - "Put my garment on this model, full body, front view"
+   - "Change only the top; keep the trousers and shoes"
+   - "Make a half-body image"
+   - "Make a back view" - upload a photo of the back of the product as well; without one, do not make back views.
+   If your product photo shows several items (for example a top and shorts), always say which one to change. If you do not, the AI may change only one of them.
+
+[Check 4 things in the result]
+1. Is it still the same person? Compare with Model_card.png in the "1_Read_me (do not upload)" folder and look at the two memory points first: full rounded cheeks with a small rounded chin; softly arched brows with almond eyes, outer corners slightly downturned.
+2. Was her body changed? Longer legs or a slimmer waist?
+3. Is the garment right? Compare with your product photo: colour, neckline, sleeves, buttons or zip, length.
+4. Was anything else changed? Background, pose, shoes, extra jewellery or bags.
+
+[If something is wrong]
+- Small problem (one detail of the garment, extra jewellery): say what is wrong in the same chat, e.g. "The neckline should be round; keep everything else."
+- Her face no longer looks like her: do not keep editing that image. Start a new chat and upload the zip and the product photo again.
+- You cannot recognise her in a full-body image: ask for a half-body image first.
+- Next product: start a new chat for each product, from the zip. Do not continue from the previous result.
+- If the same problem is still there after two fixes, stop and start again in a new chat.
+
+[Folders]
+- 1_Read_me (do not upload): this guide, the model card, originality and limits. For you only; do not upload them to the AI.
+- 2_Upload_to_AI: upload only this zip.
+- 3_Lifestyle: walking, sitting and smiling images you can use in your shop as they are. Do not use them as a face reference.

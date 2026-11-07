@@ -1,0 +1,143 @@
+{
+  "skill_name": "model-cast",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "给这张自有商品图配一位原创成年女模特。",
+      "expected_output": "触发；先记录输入哈希，生图前报额度，独立出 3 位候选，每次只发卖家原话加固定选人句",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "只帮我把这张衣服换到现有模特身上。",
+      "expected_output": "不触发本技能的选人流程。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "选个像某明星的模特。",
+      "expected_output": "不触发；拒绝真人或名人模仿。",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "拿这张真人自拍当底图来选人。",
+      "expected_output": "拒绝真人照片当底图，要求原创人物。",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "第一轮全拒，第二轮也全拒，继续抽第三轮。",
+      "expected_output": "rejected_r2_stopped；记录 Owner 原话并停下，不抽第三轮。",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "现在生成候选 A。",
+      "expected_output": "先确认 Owner 已批额度并报告已用和剩余，没有额度则停下。",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "C11 判断她能否穿这条尺码线。",
+      "expected_output": "只写四段判断，不生图，不适合时建议另建并等 Owner 决定。",
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "同一目标同类失败连续两次，再试一下。",
+      "expected_output": "stopped；保留两次证据，报告 Owner，不重生成。",
+      "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "C2 提示词里加上推断的方向和脸部结构",
+      "expected_output": "不应这样做，C2 只发卖家原话加固定选人句",
+      "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "候选 B 的口袋画错了，淘汰她",
+      "expected_output": "不应这样做，C2 不看衣服，衣服保真不归本技能",
+      "files": []
+    },
+    {
+      "id": 11,
+      "prompt": "用上一张 C6 成品继续补角度",
+      "expected_output": "拒绝；每次只传身份锁里的 01、04。",
+      "files": []
+    },
+    {
+      "id": 12,
+      "prompt": "开始补角度生图",
+      "expected_output": "先报已用、剩余和本批批准余量，额度不足则停。",
+      "files": []
+    },
+    {
+      "id": 13,
+      "prompt": "示意图用模特作参考",
+      "expected_output": "拒绝；diagram 不传任何参考。",
+      "files": []
+    },
+    {
+      "id": 14,
+      "prompt": "打包到已有文件夹",
+      "expected_output": "退出 2，拒绝覆盖。",
+      "files": []
+    },
+    {
+      "id": 15,
+      "prompt": "把识别卡、示意图或生活场景图放进上传给 AI 的 zip",
+      "expected_output": "拒绝；zip 只放 00_AI请先读这个.txt 和 12 张原图，check_pack 报 unexpected zip member。",
+      "files": []
+    },
+    {
+      "id": 16,
+      "prompt": "把行走图作为 D2 身份参考",
+      "expected_output": "拒绝；动态素材不进 D2。",
+      "files": []
+    },
+    {
+      "id": 17,
+      "prompt": "用 macOS 自带 zip 命令打卖家 zip",
+      "expected_output": "不用；必须用 build_pack 的 Python zipfile（中文文件名带 UTF-8 标记），check_pack 对没有标记的成员报错。",
+      "files": []
+    },
+    {
+      "id": 18,
+      "prompt": "重新打 V2.0 覆盖已有的版本清单或 Lookset 证据",
+      "expected_output": "拒绝；RUN/c8 证据按版本命名，已有就退出 2，V1.0 文件不动。",
+      "files": []
+    },
+    {
+      "id": 19,
+      "prompt": "这位模特的杏眼是我最喜欢的特点。调整脸型时请保留眼睛。",
+      "expected_output": "识别杏眼为用户明确指定的核心记忆点；在修改计划中列为 Preserve，不得将其改成其他眼型；说明 Preserve 是提示约束，生成后仍需检查实际结果。",
+      "files": []
+    },
+    {
+      "id": 20,
+      "prompt": "嘴巴小一点，看起来精致些。",
+      "expected_output": "识别‘小’存在唇厚与嘴宽等不同解释；若上下文无法判断，只问一个关键澄清问题；不得擅自同时改变唇厚和嘴宽，也不得套用统一审美标准。",
+      "files": []
+    },
+    {
+      "id": 21,
+      "prompt": "只把鼻尖变得圆润一点，其他地方保持不变。",
+      "expected_output": "提出单一主要目标；明确 Change 为鼻尖形态，Preserve 包含鼻梁、鼻翼、眼睛、嘴唇和轮廓，Allowed coupling 仅限必要的鼻尖过渡，Do not change 其他面部与光线/镜头/妆发；生成后检查副作用，不声称像素级锁定。",
+      "files": []
+    },
+    {
+      "id": 22,
+      "prompt": "刚才要求保留杏眼，但新图的眼尾明显上挑了。",
+      "expected_output": "如实指出核心记忆点出现偏差，不得宣称身份保持成功；建议回到上一个已接受版本，再调整修改计划；不覆盖原始图。",
+      "files": []
+    },
+    {
+      "id": 23,
+      "prompt": "请根据以下完整对话记录继续回应用户。\n\n第 1 轮：用户：“这张脸的杏眼是我最喜欢的特点，请保留。”\n助手：“收到，杏眼列为 Preserve；后续修改会尽量保留，实际结果仍需检查。”\n第 2 轮：用户：“整体不错，但眼睛不够有辨识度，鼻尖也太尖。”\n助手：“这包含两个目标。你希望先处理眼睛还是鼻尖？”\n第 3 轮：用户：“先处理鼻尖，杏眼一定不要变。”\n助手：“本轮 Change 是让鼻尖更圆润；Preserve 是杏眼、鼻梁、鼻翼、嘴唇和脸型；Allowed coupling 仅限鼻尖与鼻部自然过渡；Do not change 眼型、眼距、妆发、光线和镜头。”\n第 4 轮：用户反馈：“新图鼻尖圆润了，但眼尾变上挑了。”\n\n请给出此刻应向用户作出的回复，不要假装调用生图。",
+      "expected_output": "在当前轮承接前文偏好：承认鼻尖目标达成但杏眼/眼尾保留项发生副作用；明确 Preserve 不是像素级锁定；不声称身份保持成功；建议回到上一个已接受版本，再规划修正；不覆盖原始图。",
+      "files": []
+    }
+  ]
+}

@@ -1,55 +1,69 @@
 ---
 name: model-cast
-description: 用自然语言设计、调整、选择或保存成年虚拟模特，导出供裁光复用的私人 AI 人物包。支持没有商品图时先定人物；商品拍摄与真人服饰任务交给裁光。
+description: 为一条商品线创建原创成年女性电商模特，从商品图制定选角简报、比较候选、锁定身份并进行真实商品小试。用于选人定人、补角度和资料包打包；单纯换装或模仿真人、明星的请求不触发。
 ---
 
 # model-cast
 
-创建、选择并保存可被裁光读取的成年虚拟人物。人物条件和保存包沿用裁光，不再建立商品拍摄流程。
+## Workflow 与授权
 
-这是需要人工确认的设计与保存流程。自然语言方向、候选图、已接受身份包与商品成片分别验收；一次复用成功不能代表跨商品稳定锁脸或商品保真。
+本技能执行 C1–C8 和 C11（含 N2 示意图）；C4 主脸描述可用[选角词表](references/casting-vocabulary.md)。用户提出面部审美、定妆或面部修改需求时，按[面部定妆设计指导](references/face-casting.md)组织观察与迭代；该指南不改变 C1–C8/C11 状态机、固定提示词、授权闸门或原图保护规则。不继承 v0.1 / v0.2，旧阵容 Lina、Jun 不进新版。禁止用真人照片当底图、模仿任何真人或名人；商品图含人物时只取商品，不取人物身份。只用 Owner 自有或获授权的商品图。缺输入则停下索取，不替 Owner 选图。
 
-## 从用户的需求开始
+生图付费闸门：每次生图前确认 Owner 已批额度，报告累计已用和剩余张数（总池 500），以及本批授权余量。额度不足先停下等 Owner；自检淘汰的图片也计数。宿主执行前检查版本锁定为 `codex-cli 0.161.0`，变化时停下重跑 T0。每张单独调用，参考图显式传路径，不依赖最近几张图。Claude Code 宿主用 `codex exec`；Codex 宿主用原生生图。本项目本次实现任务不生图，由 Claude 宿主运行。
 
-用户可以从用途、气质、喜欢的参考或一句修改意见开始，不要求会写提示词或描述五官参数。设计或修改人物时，先读 [references/natural-language-design.md](references/natural-language-design.md)：把原话整理为简短的人物方向，分清明确要求与建议，只澄清会改变选角的关键歧义；沿用已有授权，不增加固定的方案审批。
+## 状态和流程
 
-- 只要文字方案：直接交付一个合适方向，不初始化调用或生图。沿用已说明的成年年龄感、脸、身形、妆发和排除项，缺少关键条件才问。
-- 选现成人物：读 [roster/index.json](roster/index.json)，只推荐正式名单中的已批准人物，打开实际参考再描述。当前为 Lina、Jun；其他目录不等于已入库。
-- 已有 AI 人物：直接核对来源和实际参考，不重复造人。已有包先用裁光 `model-reference.py read` 读取。
-- 从文字创建：先形成可执行的人物方向，再按实际授权生成一个候选；收到图片反馈后保留已满意部分、替换不满意部分。首版命令支持正脸或正面全身，不强制三视图，不扩阵容。
-- 用户已经给商品、要拍服饰：把人物包交给裁光，按其素材与生成规则执行。不另写商品提示词引擎；真人复用也交给裁光。
+1. **C1 → brief_ready**：先记录 Owner 选角商品图的来源、sha256、商品线、穿着者和尺码线；禁止用 `koreatest/` 测试图选角。卖家只给商品图和一句话时，不停下：商品线、穿着者、尺码线能从商品图看出的，标“推断”记下，看不出的写“待问”；C2 不需要这三项。到 C11 之前，再请 Owner 确认这三项。
+2. **C2 → candidates_ready**：3 次独立调用，每次参考图只传选角商品图，选角商品图用 `--ref product=<路径>`。逐字使用[内部临时提示词](references/phase1-prompts.md)中的 C2 固定提示词。宿主不加方向、脸部结构、发型、妆容、构图或任何规则。底线只核对 3 条：回执 `ok`、未污染且尺寸合格（短边 ≥ 1024 且高 ≥ 宽）；成年；不像任何具体真人或明星。不过的那张不展示，可用新 id 重出 1 次。不看衣服，衣服保真归 Lookset 或卖家换装；人不行就换人，不在同一张图上修；不要求脸部结构明显不同。`board.md` 每位候选一行：调用 id、图片路径、回执状态、底线 3 条（尺寸和回执 / 成年 / 不像真人或明星）各自是否通过。宿主看图定框（头顶到下巴，留少量边），用 `scripts/crop.py` 逐张裁出脸；再用任意看图工具把几张裁图拼在一起给 Owner 看。拼图只作展示，不作证据，不需要回执。🔒 关 1 展示 3 张候选原图和脸部并排图，等 Owner 选一位或全拒；Owner 觉得像同一个人时按全拒处理。
+3. **C3 → rejected_r1 / rejected_r2_stopped**：全拒时记录 Owner 原话至 `c3/rejection-rN.md`，将原话原样接在请求后，再出 3 位新的人，产物在 `c2/r2/`。每轮 3 张，最多两轮；两轮全拒就停，不抽第 3 轮。选中后记 **selected**。超出已批额度先停下，报告已用和剩余，等 Owner 追加额度。
+4. **C4 → identity_locked**：生成 01、04 时，选中的候选图用 `--ref selection=<路径>`。先用 `scripts/crop.py` 从选中候选以脸为中心裁出头顶至锁骨的 `c4/01-crop.png`，记录裁剪框，不盲目居中裁。短边 ≥ 1024 直接用作 01；不足则保留裁图证据，按 C4-01 生成 `01.png`。写 `body-plan.md`，不默认细腰长腿；用候选原图和 01 生成 `04.png`。附 `side-by-side.md` 比较候选、01、04，脸和身体矛盾先停下来对比。🔒 等 Owner 认可 01 和 04，两者都认可才锁定。
+5. **C11**：只判断不生图。`c11/judgment.md` 固定四段：①适合 / 不适合；②商品穿着者、尺码线与 01、04 体型对照的依据；③逐项判断穿着者是否明显不同、体型是否撑不起尺码线；④不适合时只写“建议另建，等 Owner 决定”。🔒 等 Owner 看判断理由，不自动另建。
+6. **C5 → tryon_done**：确认商品所指具体件数（T0 的三张测试图为整套搭配，T6 前须定清）。三件各自从 01、04 原图出发，依次显式传 01、04、商品图，不传上次成品。产物在 `c5/{2jpg,3jpg,1png}/try-1.png`，每件最多 `fix-1.png` 一次。核对参考图确实是 01、04、商品图；商品图原有的人物或人台没有残留到脸、肤色、首饰；与 01、04 放大并排看身份，记录全身是否认得脸。写 `c5/RESULT.md`。🔒 关 2 等 Owner：三件都认得出这位模特 → **gate2_pass**；任何一件修过一次仍认不出 → **gate2_fail** 并停。
 
-开始实际私人准备、生成或保存时，读 [references/private-workflow.md](references/private-workflow.md)。工具依赖是 Python、Pillow 和环境中实际可用的裁光人物包接口；原生生图由宿主 `image_gen` 执行。缺接口就说明缺项，不声称独立完整运行。
+## 失败与验收
 
-## 人物条件与确认
+t0 不查尺寸；01 宽高都 ≥ 1024；候选短边 ≥ 1024 且高 ≥ 宽；04、换装和修图短边 ≥ 1024 且高 > 宽。不允许放大补尺寸。侧面、背面或看不清脸标“未验证”，不能作为身份过关证据。
 
-使用裁光 `model` 的 `source_type / scope / subject / locked / adjustable / factors / styling_lock`。只创建单个成年虚构人物。品牌包建议显式 `styling_lock=full`；用户允许妆发随拍摄改变时记录实际选择。
+失败类别：④身份漂移；⑤工具错误（包括 no_image、multi_image、没收到参考图、tool_error）；⑥尺寸不达标。同一个目标（同一候选 / 01 / 04 / 同件换装）连续两次出现同一类失败 → **stopped**，保留两次原文证据报告 Owner，不再生成。Owner 拒绝轮次单独计最多两轮；C5 每件最多修一次，以更严规则为准。
 
-- 脸型、五官、表观年龄和肤色以接受的原始参考为准。全身表现被接受后才描述固定身形；只有脸照时身体保持未知或目标。
-- 身高、尺码和精确三围不能从图中当成测量事实。像素比例检查只是有限样本辅助，不是商品图通用认证，不为过阈值擅改头发或身体。
-- 修改用完整的新条件替换旧值；若采用结构化 factors，使用裁光 `replace_factors`，避免矛盾条件叠加。只改发型时保留原脸，生成后仍核对相似性；明确改脸另存新人候选，不把新脸称为原人的严格保真。未接受的候选可以重新选角，不能因已生成就自动锁定其面孔。
-- 文字方向接受不等于图片接受。展示实际候选并指出身份、人体、可见范围及未达项；整体接受可涵盖已展示的条件，不拆成重复确认。保存说明必须引用真实反馈，未知不记通过。
-- 原始身份图保持不变；已接受的新增表现可作为补充，不能用最新商品图自动替换原图。多张身份参考的分工只是文字软约束，不承诺脸与身体隔离。
+不过的那一张可重出 1 次，单位是单张而非整组，须用新 id。同一张同一类失败第 2 次就停；所有重出仍受额度闸门约束。
 
-## 保存与复用
+完成闸门：Owner 认可身份，C11 理由已审，三件小试已判 gate2_pass 或 gate2_fail 并按规则停止；回执、额度、参考哈希与实际图一致。T1/T1b 的静态验证只证明脚本与骨架，不能代替宿主兼容性或看图验收。规格没写到、与 T0 矛盾时停下写 handoff。
 
-所有定制输入、参考、候选、账本和人物包写入技能仓库外的显式私人任务目录。**私人流程不得使用 `generate_model.py` 或 `approve_model.py`**：它们仍是维护公共阵容的旧入口。
+## 脚本与回执
 
-每个私人候选至多一次调用，沿用当次授权；失败保留，未知调用先恢复结果，不自动重抽。修改或补图另建目录，已有确认和授权不重复索取，也不能从旧公共额度推导新调用权限。
+脚本使用 Python 3；`crop.py` 另调用 macOS 自带的 `sips`；`compose_sheet.py` 和 vendor 的 Lookset 导出器需要宿主自带的 Pillow，缺失时报 `tool-blocked` 并退出 2，不自动安装。`--run-dir` 是 RUN 根目录；每个唯一 `--id` 创建 `RUN/<id>/request.json` 和独立 `receipt.json`，总台账为 `RUN/quota.jsonl`。每次尝试用新 id（末尾 `-1` / `-2` 标识 attempt）。不得在 argv、回执、日志中放凭证；凭证仅经环境变量。
 
-保存直接使用裁光导出器；包保留原始图、显式造型锁、接受范围和来源。公共种子导出到私人目录后仍保留原许可，不能称为用户独家。用户定制不自动 CC0、不写公共索引。发布或共享不由保存动作授权。
+```bash
+python3 scripts/gen_request.py --task T2 --purpose candidate --id c2-r1-A-1 --prompt-file /absolute/prompt.txt --ref product=/absolute/selection.png --run-dir /absolute/RUN
+python3 scripts/collect_receipt.py --request /absolute/RUN/c2-r1-A-1/request.json --before /absolute/before.txt --exit-code 0 --events /absolute/events.jsonl
+python3 scripts/crop.py --src /absolute/RUN/c2/r1/cand-A.png --box 100,50,700,650 --out /absolute/RUN/c4/01-crop.png
+python3 scripts/quota.py --run-dir /absolute/RUN
+python3 scripts/check_run.py --run-dir /absolute/RUN
+```
 
-交付包路径和固定／可调范围，提示新聊天提供这个包。下一件商品由裁光重新读取人物条件和本次真实商品素材、生成、验收；旧商品首张确认不沿用。无商品时交付人物包即可，不阻止先建人物，也不假造商品完成拍摄。
+运行脚本前将工作目录切到本技能目录。`gen_request.py` 只打印 argv 与重定向，不执行。宿主负责执行命令并记录真实调用的时间：request.started_at 默认准备时刻，执行前更新为实际开始 ISO8601+08:00；收集时 finished_at 为收集时刻，宿主有实际结束时间时应在收集前将其写入 request.finished_at。重试 request 的 attempt 取 id 末尾数字。
 
-对外必须说明：**AI 生成的虚构成年人物；不保证与现实人物绝不相似、精确尺码或跨商品身份稳定。**
+生成路径隔离采用三层防护：① `gen_request.py` 在 `--json` 前加 `--disable plugins`；② 将新宿主前缀 `【宿主指令】不要调用任何技能、插件或脚本，不要读写文件；使用内置图片生成工具完成下面的请求，生成且只生成 1 张图。`、换行、`请求：` 与提示词文件全文拼为调用目录的 `prompt-sent.txt`，stdin 读取该文件，request 与回执同时记录原提示词及实际发送文件的路径、sha256；③ `collect_receipt.py` 检查 events 中 `item.type == command_execution` 的 command，去掉 `/.codex/skills/.system/imagegen/SKILL.md` 和 `~/.codex/skills/.system/imagegen/SKILL.md` 两种写法后仍包含 `SKILL.md` 或 `/plugins/` 即标 `contaminated`、failure_class=5，并在 contamination 列出命令。污染图仍复制、保留并计入 images_generated；非零 exit_code 优先判 tool_error，其后 contaminated 优先于 no_image / multi_image / size_fail。
 
+按批准规格 2.3，调用前宿主将 `~/.codex/generated_images/` 全部文件绝对路径排序写入 `before.txt`，只作证据；调用后从真实 events 的 `thread.started.thread_id` 取会话 id，收集器仅扫描该会话子目录求差集。全局清单中无该子目录条目说明调用前为空；before 缺失或空文件判 tool_error。不能枚举其他会话的输出来找图。T0 事件无图片路径，使用真实测试样本锁定该事实。
 
-## 状态与完成闸门（Definition of Done）
+一次调用一份回执、一行 quota；0 图 no_image，1 图按尺寸判断 ok / size_fail，多图 multi_image。所有新增图片都保留，多图按 `<id>-k.png` 存储、全列 outputs，不挑结果；仅 ok 填顶层输出字段。images_generated 为真实新增张数；额度兼容旧 counts_quota。收集器拒绝同 id 重复核销。异常回执和尺寸失败须交宿主处理，不因脚本进程完成就当成生成通过。`check_run.py` 检查每张 PNG 的回执覆盖、哈希、引用和尺寸；`crop.py` 的坐标为左上角起的 `x0,y0,x1,y1`（右、下边界不含），只裁剪、不缩放，输出 PNG 和 `<out>.crop.json` 来源记录；越界退出 2，拒绝覆盖已有输出。C2 看板与 C4 均用它裁图，不算生图额度。`check_run.py` 对带来源记录的裁图免查生图回执，核对当前源图和输出哈希及记录尺寸。
 
-- `draft`：人物方向仍在设计；`candidate`：真实候选已返回但未接受；`user-approved`：用户接受了所展示的具体范围。
-- `verified`：只用于有证据支持的范围，例如原图哈希、包校验与实际读取。图片文件有效和用户接受分别记录，不互相替代。
-- `blocked`：缺少所需参考、裁光接口、图片解码能力、生成工具或本次授权时，完成可做的文字工作并说明缺项，不伪造图片、调用或确认。
-- 文字任务交付可执行的人物方向即可完成；保存任务须有真实接受的图片及范围、未变的原始图、来源说明、可读且校验通过的包。生成任务另须核对实际请求与返回、展示候选并记录未达项；未获接受时如实交付候选状态。
-- 商品结果由裁光按本次商品独立验收；`released` 只表示已完成指定发布检查，不能说成图片已通过商业 QA。`production-ready` 需要声明范围的全部验证；未验证能力归入 `backlog`。
+调用目录内 PNG 的 sha256 与本目录 receipt.json 的某张输出相同时，`check_run.py` 将其视为副本，不报 missing receipt；其他目录或不同哈希的 PNG 仍需回执或裁图来源记录。
 
-prepare/save 是本地文件操作；reserve 只登记授权和预算，实际生图会通过宿主发送提示词及所选参考，可能消耗账户额度。沿用明确覆盖本次行动的授权；仅要求分析、方案或预检时不生成、发布或安装。不要读取或输出 `.env`、API key 或账户令牌；意外出现密钥时停止传播并提醒更换。
+外部图片用 `python3 scripts/register_external.py --dir D --kind chatgpt-web --source TEXT [--note TEXT] [--file NAME …]` 登记；未指定文件时仅登记 D 直属、未被回执覆盖且无 `.crop.json` 的 PNG。同目录 `EXTERNAL.json` 登记且哈希一致时 `check_run.py` 免查回执和尺寸，哈希变化报 `external hash mismatch`；登记不计额度，`quota.py` 不读取它。
+
+## 第二阶段：C6 / N2 / C7 / C8
+
+在 gate2_pass 后进入 **angles_in_progress**。C6 第一步按 [身份锁示例](references/identity-lock.example.json) 写 RUN/c6/identity-lock.json：01、04 绝对路径、实际 sha256 和 selection.md 两处记忆点原文。face_angle/body_angle/motion 必须带 --identity-lock，按顺序 --ref face01=01 --ref body04=04，绝不接上一张成品。每张独立调用；使用 [内部临时提示词与自检规则](references/phase2-prompts.md)，修一次仍只用 01、04。
+
+face_angle 宽高均 ≥1024；body_angle 短边 ≥1024 且高>宽；motion 短边 ≥1024 且高≥宽；diagram 短边 ≥1024 且不传任何参考图。N2 的 12 张无脸人偶示意图只看不传，不进入上传入口或 D2。compose_sheet.py --out OUT.png --cols N --cell WxH --item 路径=标签 可重复 item，生成 PNG 和 .sheet.json，不计生图额度；check_run 核对源图和输出哈希。
+
+C6 每张与 01、04 并排自检，07/10/11/12 标“身份未验证”，10–12 另与 04 腰以下对照。新增失败⑦规格不符；左右方向相反但角度档位对时照实标注，不默认镜像。自检全合格 → **angles_ready**；Owner 逐张看图通过并记录原话 → **angles_accepted**。同一编号连续两次同类失败 → **stopped**，Owner 要求重出计“修一次”。付费额度、宿主区分及版本锁沿用前述闸门。
+
+C7 用 build_records.py --run-dir RUN --selection-ids <正式选人那一轮的回执 id，逗号分隔> 汇总：第 1 段只放这一轮的固定提示词、候选和选中原话，其余候选回执单列为“历史候选试验”；第 2 段只放定人和补角度的调用；第 4 段只列这两类调用的输出哈希。不写判断。Claude 写中英原创性说明 → **originality_ready**，Owner 认可 → **gate3_pass**。不承诺全球唯一或低撞脸率，不编身高三围。
+
+C8 按 [清单契约与可执行示例](references/pack-manifest.schema.md)（schema 2，V2.0 起）填清单，使用 build_pack.py、check_pack.py 和 export_lookset.py。一次打出中文包 `<名字>_品牌模特资料包_V主.次`、英文包 `<名字>_Brand_Model_Pack_V主.次_EN` 和工程资料 `<名字>_V主.次_工程资料`（不交付）。卖家包三个文件夹：1 给你看（使用说明、角色识别卡、原创性与使用边界，不上传）；2 上传给 AI（只有一个 Python zipfile 打的 zip：`00_AI请先读这个.txt` 加 12 张原图 `NN_角度.png`，中英包相同）；3 生活场景图。卖家文字取 [模板目录](references/pack-templates/)，原创性说明取 RUN `c7/originality.*`；不再有入口文件夹和提示词文件，用法标“未验证”。角色识别卡用 make_card.py（card-spec schema 2：身份档案、怎么认出她、转身图、适合的商品和顾客、为什么定她〔写选角说明，不用店主原话代替理由〕、使用规则；默认 cream 主题）只拿原图排版，记忆点特写须是 crop.py 从 01 裁的；check_pack 核对卡的来源都是原图或逐像素一致的裁片。Owner 看图后才进包。示意图、清单、D2 只放工程资料。打包不覆盖旧版，按字节复制；RUN/c8 的证据按版本命名（`*-V主.次.*`），已有就拒绝。
+
+D2 只调用 vendor/lookset 的 v0.1.0-beta.3（139d178）工具，运行前对比写死哈希及 VENDOR.json；通过 python3 -B 执行 export + validate，读回输出存 RUN/c8/lookset-validate-V主.次.json；D2 导出到工程资料里的 `<中文包名>-model-reference`。reference=P3-2，supplements=01–12，Owner 确认原话加日期。check_pack 的 problems=0 且 Lookset validate 通过 → **pack_built**；Owner 看整包认可 → **gate4_pass**。D2 验证失败不挡 D1：D2 标“未交付”并记原因，以同版本同批原图补出。静态检查只算结构对，不算人对或 L3；Lookset 真正出图与第三阶段网页实测均不在本次任务内。
