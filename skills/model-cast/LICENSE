@@ -20,4 +20,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-The public seed images and cards under roster/ use CC0-1.0; see roster/LICENSE-CC0.txt.
+Vendored Lookset files retain Apache-2.0; see vendor/lookset/LICENSE and THIRD_PARTY_NOTICES.md.

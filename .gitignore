@@ -1,10 +1,18 @@
-.venv/
-__pycache__/
-*.pyc
-.pytest_cache/
+# Local runtime data and secrets stay outside version control.
+.worktrees/
 .DS_Store
-.env
-.env.*
+__pycache__/
+.pytest_cache/
+.venv/
+.env*
+.example-run/
 outputs/
+output/
+packs/
 private/
-state/
+raw/
+**/quota.jsonl
+**/receipt.json
+**/request.json
+**/events.jsonl
+tests/model-cast-test-*/

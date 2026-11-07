@@ -1,0 +1,41 @@
+{
+  "sources": [
+    {
+      "path": "01.png",
+      "sha256": "8d2eb6379b1e978293c32dc6452f90df027cf6da230b2c6af21d55aae858106d",
+      "label": "01.png"
+    },
+    {
+      "path": "01.png",
+      "sha256": "8d2eb6379b1e978293c32dc6452f90df027cf6da230b2c6af21d55aae858106d",
+      "label": "01.png"
+    },
+    {
+      "path": "02.png",
+      "sha256": "20d3fd0087571e489f0ed2c0a8f8e3b7d8874de97d014908d5ab34a722e0a818",
+      "label": "02.png"
+    },
+    {
+      "path": "04.png",
+      "sha256": "e754d5d9ba458ebd65e06d397471465e599338847770d54fc7d41b28aea26c01",
+      "label": "04.png"
+    },
+    {
+      "path": "05.png",
+      "sha256": "c06ed002e29bbb5c3865d9479bf0d32c48be0c35cc4f3ee6dfcfb97fb1de85d5",
+      "label": "05.png"
+    },
+    {
+      "path": "06.png",
+      "sha256": "a6d81c833a32b07639ccedd397c7252c72bee3a1cceecf40da5056269ebb0f39",
+      "label": "06.png"
+    },
+    {
+      "path": "07.png",
+      "sha256": "9b20d9edf1bf7b909d7396c43ba9fa531a4ff78fc625218c412f766de8002f00",
+      "label": "07.png"
+    }
+  ],
+  "output_sha256": "5988a6049b9c4d2e9418cd7fcb96f57b49cfbc95d2f8f5db9cab3027967fbf41",
+  "note": "TEST FIXTURE ONLY: relative source paths"
+}
