@@ -34,3 +34,12 @@ A new V3.0 multi-file candidate was built into a new output directory; the previ
 Reading/selecting attachments does not prove that a downstream image-generation/editing tool received them. The user instructions require the host to confirm actual reference handoff or ask for direct re-upload. ChatGPT and Codex behavior must not be described as identical until both are tested.
 
 The face-casting guide is documentation/eval guidance, not a precise facial-edit controller. The V0.2 face-casting guide is selectively integrated with Evals 19–23; this validates guidance/eval structure, not actual edit quality. C10 human-pose line art remains unimplemented. N2 is a camera/framing guide, not model identity, a pose drawing, or a clothing drawing. C5 was an internal identity-continuity check, not garment-fidelity validation. V0.2's practical nose-tip edit target was not accepted. Automated tests and package validation do not prove image quality or Owner acceptance.
+
+## Release candidate re-verification — 2026-11-08
+
+On the exact merged `main` commit `041d3ac0aaa3de90c69bb07848f1c1e9ce5c0514` in a clean detached worktree:
+
+- `python3 -m pytest -q -p no:cacheprovider`: **242 passed in 30.64s**.
+- `git diff --check`: passed.
+- `shasum -a 256 -c SHA256SUMS`: every tracked distribution file passed after excluding the `.git` entry. `.git` is not tracked by Git and is represented differently in linked worktrees; hashing it makes the manifest non-portable and is not a project-file integrity check.
+- The V3.0 bilingual package candidate was checked with `check_pack.py --require-lookset`: `problems=0`. This verifies package structure and byte provenance, not visual quality or public redistribution rights for the generated seller package.

@@ -12,9 +12,9 @@
 
 ## Legacy public main
 
-The existing public main and its historical prerelease are unchanged. These branches do not merge into it or create a new release.
+The historical `v0.1.0-beta.1` prerelease remains unchanged.
 
-## 2026-11-08 — ordinary AI multi-file library (unreleased)
+## 2026-11-08 — v0.2.0: ordinary AI multi-file library
 
 - Add a separate full visual-reference folder to Chinese and English seller packages: 12 model views, three action/expression examples, N2 camera/framing guide, START-HERE instructions, and a generated `asset-index.json`.
 - Keep the existing four-image core folder for minimal-reference tasks; keep Lookset D2 separate and exclude N2/C10 from D2.
@@ -24,7 +24,7 @@ The existing public main and its historical prerelease are unchanged. These bran
 - Verification: 240 existing tests passed before the two new AI-library regression cases; targeted package/public tests passed 140 tests after the changes. See current full-suite result in `docs/VERIFICATION.md`.
 
 
-## 2026-11-08 — selective face-casting guidance integration (unreleased)
+## 2026-11-08 — v0.2.0: selective face-casting guidance integration
 
 - Bring the V0.2 face-casting design guide and Evals 19–23 into current main without merging the divergent V0.2 branch wholesale.
 - The guide activates only when the user asks for face aesthetics, casting, or facial edits; it does not alter fixed C2 prompts, workflow state machine, authorization gates, or source-image protection.
