@@ -64,6 +64,11 @@ Use the separate D2 adapter: P3-2 identity reference, model supplements 01–12,
 | Lookset D2 export | Implemented; structure and readback validated, not full commercial workflow validation |
 | Face-casting design guidance | Integrated with Evals 19–23; actual fine nose-tip edit target not passed |
 
+## POC evidence and optional pose guidance
+
+- [Public POC results](docs/POC-RESULTS.md) summarizes ZIP reading, direct multi-file recognition, minimum-reference selection, the limited side-view generation test, and the Codex timeout result. It separates observed outcomes from unverified host behavior and excludes private RUN records and source images.
+- [C10 pose-guide usage specification](docs/C10-USAGE.md) defines how optional pose references differ from C6 identity references and N2 camera/framing references. The three-image C10 set is a post-v0.2.0 supplement and is not included in the v0.2.0 release.
+
 ## Install
 
 ```sh
