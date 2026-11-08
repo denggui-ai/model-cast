@@ -1,33 +1,33 @@
-How to use: put your clothes on the model Yuning
+Yuning AI Model — User Guide
 
-This method is not fully verified yet: it has been tested four times on ChatGPT Pro (once each for a side view, back view, looking back, and sitting sideways). Whether all four results retained the same person is still awaiting the shop owner’s confirmation. Other ChatGPT plans have not been tested.
+model-cast creates an original AI model and delivers her visual reference assets. This library is for continuing to use the model in ChatGPT or Codex. Later garment try-on, clothing design, and commercial photography are handled by downstream tools you choose; they are not functions of model-cast itself.
 
-[Three steps to one image]
-1. Open the ChatGPT website and start a new chat.
-2. Upload two things:
-   - the 4 photos in the "2_Upload_to_AI" folder;
-   - your own product photo (a front photo works best).
-3. In the same message box, write one sentence saying what you want, and send it together with the photos. You do not need to copy any prompt. For example:
-   - "Put my garment on this model, full body, front view"
-   - "Change only the top; keep the trousers and shoes"
-   - "Make a half-body image"
-   - "Make a back view" - upload a photo of the back of the product as well; without one, do not make back views.
-   If your product photo shows several items (for example a top and shorts), say clearly in that sentence which items to change, especially if you only want to change one item. If you do not, the AI may change only one of them.
+[Recommended: upload all files together]
+1. Open the folder “4_AI_Model_Library_MultiUpload”.
+2. Select all files and drag them into a ChatGPT conversation. Codex users can place the whole folder in their workspace.
+3. Send:
+   “Read START-HERE.md and asset-index.json first. Understand Yuning’s identity and visual references. For each natural-language task, choose the smallest relevant reference set and tell me which files you actually selected. Preserve her identity and do not treat the N2 mannequin as the model.”
+4. Then describe your task, for example:
+   - “Create a full-body side-view studio reference of Yuning.”
+   - “Use her walking example as a guide for a natural full-body walking image.”
+   - “Create a head-and-shoulders portrait while preserving her face identity and hairstyle.”
 
-[Check 4 things in the result]
-1. Is it still the same person? Compare with Model_card.png in the "1_Read_me (do not upload)" folder and look at the two memory points first: full rounded cheeks with a small rounded chin; softly arched brows with almond eyes, outer corners slightly downturned.
-2. Was her body changed? Longer legs or a slimmer waist?
-3. Is the garment right? Compare with your product photo: colour, neckline, sleeves, buttons or zip, length.
-4. Was anything else changed? Background, pose, shoes, extra jewellery or bags.
+[What the files are for]
+- 01: primary face identity reference.
+- 04: primary front full-body and body-proportion reference.
+- 06 and 07: side/back body references; 07 has no visible face and cannot prove facial identity.
+- 02, 03, 05, 08–12: supplementary angles, selected only when relevant.
+- 13–15: walking, sitting, and natural-smile examples; use only when relevant.
+- 16: N2 grey faceless mannequin showing camera direction and framing only. It is not Yuning, not a pose drawing, not a clothing image, and not an image-edit base.
 
-[If something is wrong]
-- Small problem (one detail of the garment, extra jewellery): say what is wrong in the same chat, e.g. "The neckline should be round; keep everything else."
-- Her face no longer looks like her: do not keep editing that image. Start a new chat and upload those 4 photos and the product photo again.
-- You cannot recognise her in a full-body image: ask for a half-body image first.
-- Next product: start a new chat for each product, from those 4 photos. Do not continue from the previous result.
-- If the same problem is still there after two fixes, stop and start again in a new chat.
+The folder “2_Upload_to_AI” retains the four core images (01, 04, 06, 07) for simple tasks that need a minimal reference set. Prefer the complete library for multi-reference use.
 
-[Folders]
-- 1_Read_me (do not upload): this guide, the model card, originality and limits. For you only; do not upload them to the AI.
-- 2_Upload_to_AI: upload these 4 photos.
-- 3_Lifestyle: walking, sitting and smiling images you can use in your shop as they are. Do not use them as a face reference.
+[Important limitations]
+- Reading and selecting attachments does not prove that an image-generation/editing tool received them. Before executing an image task, confirm that the AI states which references were actually passed to the tool. If the host cannot pass the selected images, attach the required images directly as requested.
+- Filenames are labels; identify images using both asset-index.json and visual content.
+- C10 human-pose line art is not implemented and is not included.
+- Do not treat N2 as identity reference or use images without a face as facial-identity evidence.
+- Garment try-on, clothing design, and commercial photography are outside model-cast. Lookset users should use the separate Lookset D2 adapter and must not mix N2 into D2.
+
+[After generation]
+Check that Yuning remains recognizable and that facial memory points, hairstyle, and body proportions have not drifted. Angle references help only for their corresponding views; a back view or faceless image cannot prove facial identity. If the result is unstable, restart from 01 plus the most relevant angle rather than using an unstable output as the new identity anchor.

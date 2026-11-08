@@ -3,7 +3,8 @@ import argparse
 import json
 from pathlib import Path
 from gen_request import sha256
-from pack_common import (ANGLES, IDS, LANGS, SELLER, UPLOAD_IDS, display_hashes, engineering_layout, internal_hashes, joined_text,
+from pack_common import (ANGLES, IDS, LANGS, SELLER, UPLOAD_IDS, ai_library_assets, ai_library_index,
+                         display_hashes, engineering_layout, internal_hashes, joined_text,
                          load_manifest, names, seller_layout, verify_sources, version_manifest_name)
 
 
@@ -41,9 +42,12 @@ def check_seller(pack, m, lang, internal, problems):
             if not spec: continue
             if spec[0] == 'copy':
                 if digest != (spec[2] or sha256(spec[1])): problems.append(where+': hash mismatch: '+name)
-                if spec[2] is None and not file.read_text(encoding='utf-8').strip(): problems.append(where+': empty text: '+name)
+                if spec[2] is None and file.suffix.lower() in ('.txt','.md') and not file.read_text(encoding='utf-8').strip():
+                    problems.append(where+': empty text: '+name)
             elif spec[0] == 'text':
                 if file.read_text(encoding='utf-8') != joined_text(spec[1]): problems.append(where+': text differs from sources: '+name)
+            elif spec[0] == 'json':
+                if json.loads(file.read_text(encoding='utf-8')) != spec[1]: problems.append(where+': JSON differs from generated asset index: '+name)
         except (OSError, ValueError) as e: problems.append(where+': '+name+': '+str(e))
     lifestyle = pack/SELLER[lang]['folders'][2]
     if len(list(lifestyle.glob('*.png'))) != 3: problems.append(where+': lifestyle must contain exactly 3 PNGs')
@@ -128,6 +132,16 @@ def check_version_manifest(out, m, problems):
             if not file.is_file() or sha256(file) != digest: problems.append('version manifest is stale for: '+package+'/'+dest)
         want = [dict(filename=f'{i}_{ANGLES[i]}.png', sha256=m['originals'][i]['sha256']) for i in UPLOAD_IDS]
         if data['upload_files'] != want: problems.append('version manifest upload files are stale')
+        library_want = [dict(filename=filename, sha256=asset['sha256']) for filename,asset,_,_ in ai_library_assets(m)]
+        if data.get('ai_library_files') != library_want: problems.append('version manifest AI library files are stale')
+        for lang in LANGS:
+            library = pack = out/n[lang]/('4_完整AI资料库（多文件上传）' if lang == 'zh' else '4_AI_Model_Library_MultiUpload')
+            try:
+                index = json.loads((library/'asset-index.json').read_text(encoding='utf-8'))
+                if index != ai_library_index(m): problems.append(n[lang]+': asset-index.json is stale')
+                if len(index.get('images',[])) != 16: problems.append(n[lang]+': AI library must index exactly 16 images')
+            except (OSError,ValueError,TypeError) as e:
+                problems.append(n[lang]+': AI library index unreadable: '+str(e))
     except (OSError, ValueError, KeyError, TypeError) as e:
         problems.append('version manifest unreadable: '+str(e))
 

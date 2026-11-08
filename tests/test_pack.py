@@ -58,6 +58,13 @@ def test_build_check_export_validate(manifest,tmp_path):
             assert data==Path(m['originals'][i]['path']).read_bytes()
             assert hashlib.sha256(data).hexdigest()==m['originals'][i]['sha256']
             assert data==(_upload(out,m,'zh')/name).read_bytes()
+        library=out/n[lang]/('4_完整AI资料库（多文件上传）' if lang=='zh' else '4_AI_Model_Library_MultiUpload')
+        index=json.loads((library/'asset-index.json').read_text())
+        assert len(index['images'])==16
+        assert {row['filename'] for row in index['images']} == {f'{i}_{pack_common.ANGLES[i]}.png' for i in pack_common.IDS} | {
+            '13_ACTION_Walking.png','14_ACTION_Sitting.png','15_ACTION_NaturalSmile.png','16_CAMERA_GUIDE_N2_GreyMannequin.png'}
+        assert (library/'START-HERE.md').is_file()
+        assert (library/'16_CAMERA_GUIDE_N2_GreyMannequin.png').read_bytes()==Path(m['diagram']['path']).read_bytes()
     lookset=out/n['engineering']/n['lookset']
     result=invoke('export_lookset.py','--manifest',path,'--out',lookset)
     assert result.returncode==0,result.stdout+result.stderr
@@ -71,6 +78,7 @@ def test_build_check_export_validate(manifest,tmp_path):
     version=json.loads((c8/'version-manifest-V3.0.json').read_text())
     assert len(version['files'])==2*len(seller_layout(m,'zh'))+1
     assert version['upload_files']==[dict(filename=name,sha256=m['originals'][i]['sha256']) for i,name in UPLOAD_FILES.items()]
+    assert len(version['ai_library_files'])==16
     assert 'zip_members' not in version
     for lang in ('zh','en'):
         rows=[r for r in version['files'] if r['package']==n[lang] and r['path'].startswith(SELLER[lang]['folders'][1]+'/')]
@@ -81,6 +89,15 @@ def test_build_check_export_validate(manifest,tmp_path):
     # evidence is version-named and never overwritten
     again=invoke('export_lookset.py','--manifest',path,'--out',tmp_path/'other')
     assert again.returncode==2 and 'already exists' in again.stderr
+
+
+def test_ai_library_index_tampering_is_detected(manifest,tmp_path):
+    path,m=manifest;out=tmp_path/'packs';build(m,out,path)
+    library=out/names(m)['zh']/'4_完整AI资料库（多文件上传）'
+    index=json.loads((library/'asset-index.json').read_text())
+    index['images'][0]['role']='wrong-role'
+    (library/'asset-index.json').write_text(json.dumps(index,ensure_ascii=False))
+    assert any('asset-index.json is stale' in p for p in check(out,m,path))
 
 
 def test_old_versions_are_not_touched(manifest,tmp_path):
@@ -245,12 +262,14 @@ def test_f1_originality_from_run_is_allowed(manifest,tmp_path):
 
 
 def test_real_templates_are_complete():
-    """Seller instructions use direct photos; no retired AI instructions are shipped."""
+    """Seller instructions explain the full multi-file library and host handoff limits."""
     t=SCRIPTS.parent/'references/pack-templates'
     assert not (t/'ai-readme.zh.txt').exists()
     zh=(t/'how-to-use.zh.txt').read_text();en=(t/'how-to-use.en.txt').read_text()
-    assert '4 张照片' in zh and '测试过 4 次' in zh and '尚待店主确认' in zh and '只想换某一件' in zh and '压缩包' not in zh
-    assert '4 photos' in en and 'four times' in en and 'zip file' not in en
+    assert '4_完整AI资料库（多文件上传）' in zh and 'asset-index.json' in zh and 'N2' in zh
+    assert '图像生成/编辑工具' in zh and 'C10 人物姿势线稿尚未实现' in zh
+    assert '4_AI_Model_Library_MultiUpload' in en and 'asset-index.json' in en and 'N2' in en
+    assert 'image-generation/editing tool' in en and 'C10 human-pose line art is not implemented' in en
     for name in ('how-to-use.zh.txt','how-to-use.en.txt','boundary.zh.txt','boundary.en.txt'):
         text=(t/name).read_text()
         assert '05_上半身' not in text and '提示词.txt' not in text and '01_开始换装' not in text

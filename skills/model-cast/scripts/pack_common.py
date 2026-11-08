@@ -17,6 +17,45 @@ SELLER = {
     'en': dict(folders=['1_Read_me (do not upload)','2_Upload_to_AI','3_Lifestyle'],
                how_to_use='How_to_use.txt', card='Model_card.png', limits='Originality_and_limits.txt'),
 }
+AI_LIBRARY = '4_完整AI资料库（多文件上传）'
+AI_LIBRARY_EN = '4_AI_Model_Library_MultiUpload'
+
+
+def ai_library_assets(m):
+    """The ordinary ChatGPT/Codex library: 12 model views + 3 actions + N2 camera guide."""
+    rows = []
+    for i in IDS:
+        role = 'identity-primary' if i in UPLOAD_IDS else 'angle-supplement'
+        purpose = ('Primary face identity reference.' if i == '01' else
+                   'Primary full-body front and body-proportion reference.' if i == '04' else
+                   'Primary full-body side reference.' if i == '06' else
+                   'Primary full-body back reference; no face visible.' if i == '07' else
+                   f'Supplementary model angle {i}; use only when this framing or direction is relevant.')
+        rows.append((f'{i}_{ANGLES[i]}.png', m['originals'][i], role, purpose))
+    for name, filename, purpose in [
+        ('walk','13_ACTION_Walking.png','Accepted walking example; use only for walking tasks.'),
+        ('sit','14_ACTION_Sitting.png','Accepted sitting example; use only for sitting tasks.'),
+        ('smile','15_ACTION_NaturalSmile.png','Accepted natural-smile expression example; not an identity replacement.'),
+    ]:
+        rows.append((filename, m['motion'][name], 'action-supplement', purpose))
+    rows.append(('16_CAMERA_GUIDE_N2_GreyMannequin.png', m['diagram'], 'camera-guide',
+                 'N2 camera angle and framing guide only; not model identity, not a pose drawing, and not an image-edit base.'))
+    return rows
+
+
+def ai_library_index(m):
+    return {'schema': 1, 'purpose': 'Ordinary ChatGPT/Codex visual reference library. Read this index, inspect the attached images, and select only the minimum relevant references for the user request.',
+            'selection_rules': [
+                '01 is the primary face identity anchor; 04 is the primary full-body front/body-proportion anchor.',
+                '06 and 07 provide side/back body views; 07 has no visible face and cannot prove face identity.',
+                'Images 02-03 and 05, 08-12 are supplementary angles; use only when relevant. Images without a visible face are not face-identity evidence.',
+                '13-15 are action/expression examples, not identity replacements.',
+                '16 is an N2 grey mannequin camera/framing guide only. Never treat it as the model, clothing, or an image-edit base.',
+                'Prefer 01 plus the most relevant body/angle reference for a new pose. Do not send all references to an image tool indiscriminately.',
+                'The ability to inspect/select an attachment does not prove that a downstream image tool received it. Be explicit about which references were actually passed.'
+            ],
+            'images': [{'filename': filename, 'role': role, 'purpose': purpose, 'sha256': asset['sha256']}
+                       for filename, asset, role, purpose in ai_library_assets(m)]}
 ENGINEERING_MANIFESTS = '清单'
 
 
@@ -120,6 +159,11 @@ def seller_layout(m, lang):
         files[f'{f[1]}/{i}_{ANGLES[i]}.png'] = ('copy', a['path'], a['sha256'], i)
     for name,a in m['motion'].items():
         files[f'{f[2]}/{name}.png'] = ('copy', a['path'], a['sha256'], name)
+    library = AI_LIBRARY if lang == 'zh' else AI_LIBRARY_EN
+    for filename,asset,role,purpose in ai_library_assets(m):
+        files[f'{library}/{filename}'] = ('copy', asset['path'], asset['sha256'], None)
+    files[f'{library}/START-HERE.md'] = ('copy', str(Path(__file__).resolve().parents[1] / 'references' / 'pack-templates' / ('ai-library-start.zh.md' if lang == 'zh' else 'ai-library-start.en.md')), None, None)
+    files[f'{library}/asset-index.json'] = ('json', ai_library_index(m))
     return files
 
 

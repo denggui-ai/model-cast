@@ -4,8 +4,8 @@ import json
 from pathlib import Path
 import shutil
 from gen_request import sha256
-from pack_common import (ANGLES, LANGS, UPLOAD_IDS, engineering_layout, joined_text, load_manifest, names,
-                         seller_layout, verify_sources, version_manifest_name)
+from pack_common import (ANGLES, LANGS, UPLOAD_IDS, ai_library_assets, ai_library_index, engineering_layout,
+                         joined_text, load_manifest, names, seller_layout, verify_sources, version_manifest_name)
 
 
 def copy(source, output, expected, where):
@@ -38,6 +38,9 @@ def build(m, out_dir, manifest_path=None):
                     actual = copy(spec[1], output, spec[2], dest); original_id = spec[3]
                 elif spec[0] == 'text':
                     output.write_text(joined_text(spec[1]), encoding='utf-8'); actual = sha256(output); original_id = None
+                elif spec[0] == 'json':
+                    output.write_text(json.dumps(spec[1], ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+                    actual = sha256(output); original_id = None
                 records.append(dict(package=target.name, path=dest, sha256=actual, original_id=original_id))
         engineering = targets[2]; engineering.mkdir(parents=True); created.append(engineering)
         layout = engineering_layout(m)
@@ -46,7 +49,9 @@ def build(m, out_dir, manifest_path=None):
                 output = engineering/dest; output.parent.mkdir(parents=True, exist_ok=True)
                 records.append(dict(package=engineering.name, path=dest, sha256=copy(spec[1], output, spec[2], dest), original_id=None))
         upload_rows = [dict(filename=f'{i}_{ANGLES[i]}.png', sha256=m['originals'][i]['sha256']) for i in UPLOAD_IDS]
-        version = dict(packages=[t.name for t in targets], version=m['version'], files=records, upload_files=upload_rows)
+        library_rows = [dict(filename=filename, sha256=asset['sha256']) for filename,asset,_,_ in ai_library_assets(m)]
+        version = dict(packages=[t.name for t in targets], version=m['version'], files=records,
+                       upload_files=upload_rows, ai_library_files=library_rows)
         text = json.dumps(version, ensure_ascii=False, indent=2) + '\n'
         for dest,spec in layout.items():
             output = engineering/dest; output.parent.mkdir(parents=True, exist_ok=True)
