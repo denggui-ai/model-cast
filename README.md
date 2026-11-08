@@ -11,7 +11,7 @@ A review-first workflow for casting original adult fictional models and packagin
 |---|---|
 | `opensource/t15-direct-upload`（本分支） | V3 四张原图直传、双语打包、卡片排版、Lookset D2 导出；自动化结构验证通过 |
 | `opensource/v0.2-face-casting` | 独立的面部定妆指导实验；真实鼻尖修改用例未通过；不含 T15 合并结果 |
-| `opensource/development-protocol` | 脱敏后的协作规范；仅文档，不是运行技能 |
+| `opensource/development-protocol-pr` | 脱敏后的协作规范；仅文档，不是运行技能 |
 
 ## 功能与边界
 
@@ -65,6 +65,12 @@ INSTALL
 > 用 $model-cast 为我的自有商品线规划一位原创成年虚拟模特。先确认输入和计划，不生成图片。
 
 运行目录 `RUN` 和资料包输出目录应在源码仓库之外。生成、外部上传和继续重试都需要明确授权；保留原图及所有结果。`references/pack-manifest.example.json` 仅供源码仓库中的合成夹具测试；实际使用须填写自己的已授权来源和真实校验值。身份锁示例中的全零/全一哈希是占位值，不能当作素材证据。卖家文案模板中的案例和测试描述不得未经核实复制成对自己产品的承诺。
+
+## Public development protocol
+
+- [Development Protocol](docs/DEVELOPMENT-PROTOCOL.md)
+- [Project Adapter](docs/PROJECT-ADAPTER.md)
+- [Public Project Status](docs/PROJECT-STATUS.md)
 
 ## 测试
 
