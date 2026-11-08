@@ -8,7 +8,7 @@
 | C10 human-pose line art | Not implemented | Original plan was conditional and limited; no line art is included or claimed. |
 | Face-casting design guidance | `main` + `opensource/v0.2-face-casting` | Guidance and Evals 19–23 selectively integrated; real nose-tip edit target not accepted. Remaining experimental branch is not merged wholesale. |
 | Public showcase | `main` (this finalization PR) | Owner-authorized AI-generated Yuning face/full-body/C6/N2 examples documented with limitations. |
-| Formal release | None | No new release/tag created by this work. Owner review is still required. |
+| Formal release | v0.2.0 candidate | Release metadata prepared on a dedicated branch; tag/publication follows merge and final archive verification. |
 
 ## Product boundary
 

@@ -1,6 +1,5 @@
-3b2a06ae13e47795b2a6acb5d14b607861fb8e5d3d45bfab0f33b981302174b1  ./.git
 4e44f238390ea6734fdc52ddfb90bb15aeea2dbff6468d7f3994e7343a4fcd97  ./.gitignore
-20196a4147f22ebf0f5181e6995cb4c2bb7e1cf65bc330c9dbbd9e75fe3942f8  ./CHANGELOG.md
+507f6c1f5bc40768666190d66032d60d80ddd9697a1de1291e5106b00531b35d  ./CHANGELOG.md
 6fc91723e309d7aacf27b33f9156d655b4176db09659baedc3b2ca38f5e27e0c  ./CONTRIBUTING.md
 b69a0cc1d6f9d5c98d3e017c38c89e2a7f9378d35d6b36a46ac3f777f57a8fe4  ./docs/assets/showcase/n2-grey-mannequin-camera-guide.png
 2077822d5177448d4824bf9ce99909e6557f524a64cb6918932f57af6dfc14cf  ./docs/assets/showcase/yuning-c6-angle-overview.png
@@ -8,15 +7,15 @@ c557fe8f0b363b595b061c775143be47e65bd7f99bebcf3a7aa09a5aa4c2b442  ./docs/assets/
 16652a9251db132aaf2bbe8765b4b478031224433b9e713ea538ae8772023b79  ./docs/assets/showcase/yuning-fullbody-front.png
 d8e3db6a9755c2eb56a0b8b4a7fed4e490873b2aea9975ae7715dc7235bbc55b  ./docs/DEVELOPMENT-PROTOCOL.md
 7e741d06c9152c307f16e2856574a1ab038183bc1c8031a8e890d12974469939  ./docs/PROJECT-ADAPTER.md
-d5cf4fd33882c0f3904228e0c54807f052b1da3b0d4a26372a1ef1ff9584d013  ./docs/PROJECT-STATUS.md
-adc692f884afd9e976d0700aa6bc43fcb09f4393fbe34b0440cb1eb7cfd14b17  ./docs/RELEASE-NOTES.md
-760791c686f47acfd011b58e623c6168164505d4411fa49dd084d7e41ed93c8a  ./docs/VERIFICATION.md
+09cd99e1fd938262ebc247d4cf0db8033b71436f999fbd4af0f43e5fc9b4136d  ./docs/PROJECT-STATUS.md
+2a62819effb9712a7a7e0c1e3fdd0e3420f827393c5f2ea9658bd87838d79a1c  ./docs/RELEASE-NOTES.md
+d5ce341ce60de359a5a689da0c77a9382320bd4e9241a2dcfb714873084dad89  ./docs/VERIFICATION.md
 3e9b760102af4e3bf35e5695a656be013fac0175e959cbc2eb9b01e766c7864b  ./LICENSE
 3ebb4ec9e0b228dc8190cea371ad7d294684da37c6227aaca79b776589f8ab77  ./pytest.ini
 92d6343721acbfa3ba720e9f66fd91e3c4c81b444197bfb0485d7b99424f4176  ./README.md
 e77706fe3208439d6870284281e41e2b0a80149756228bd7376a11fe1fd9a059  ./requirements-dev.txt
 dc291f65f47e8e2090f1ece7be4198885bf9850a52b3db4a590a3b5b04fc8e80  ./skills/model-cast/agents/openai.yaml
-fdf8283fa040f49d25340940d5d35220cbda5a0861802c3240582db30d19a30a  ./skills/model-cast/CHANGELOG.md
+33650672dc46a5015c4976d6361749efa5d21bd44000c941dac58d2187b12cf7  ./skills/model-cast/CHANGELOG.md
 86f648197dee6f1797667445ab1c65aad1ebd44fa18fd9b9ab3530d444a0d75e  ./skills/model-cast/evals/evals.json
 d48519457f8db2026b5419ee28c6081372af1d63b15fcbf8213a91a3b770679d  ./skills/model-cast/LICENSE
 3dc8e8b3891ab336ecba54056ac3575191af896a973b71d7a3fdef35d5b9b735  ./skills/model-cast/references/casting-vocabulary.md
@@ -32,7 +31,7 @@ d901646d05f898b9d385112a725211ff79b662fd092648601fbef5d954b67d7a  ./skills/model
 8ee253196b6ea4eaff0f317a57c11a127282d32d26e2273329dbc63e28faad3e  ./skills/model-cast/references/pack-templates/how-to-use.zh.txt
 75349e6d2876334884c51bab928479f194dc2d08ea7cad7758d5463226fcc3cb  ./skills/model-cast/references/phase1-prompts.md
 08c15c15531c03a95ba9058996b6a99aa343d126eb96052b4ceb2816f125d8d3  ./skills/model-cast/references/phase2-prompts.md
-bef853c98d53844c835c691be37eba12f65ccf04b989457f02706f24e4ddbd06  ./skills/model-cast/RELEASE.md
+7a8415c17330e9695d40a60c74f88fb5f7ac250b177d53c3cbdeac2065d5c401  ./skills/model-cast/RELEASE.md
 279bbfeed2836361eb6a08e4cee1eee30a3566f9940cacee054f49bba498bf7c  ./skills/model-cast/requirements.txt
 f91aa87d43ce81d07b4e8db09466ede2807ca7c0fca56f5ca579828f41565604  ./skills/model-cast/scripts/build_pack.py
 c80194a08bd4009861cd078efada2f29372a4c643b6e548f4eff41d62c69f18e  ./skills/model-cast/scripts/build_records.py
