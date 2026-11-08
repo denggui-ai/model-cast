@@ -1,0 +1,9 @@
+# Limits of use (please read before use)
+
+- No guarantee that her face never changes; no pixel-level preservation.
+- The model pack says nothing about your product: what the garment looks like is defined by your product photos.
+- Limited testing does not mean every garment or angle will work. No promise of global uniqueness or higher sales.
+- With only a front product photo, side and back results are not accurate product images. Without a back photo, do not make back views.
+- For side and back results where the face is not clearly visible, "is it the same person" is **unverified**.
+- In full-body images the face is small and can drift to a generic face. If you cannot recognise her in a full-body result, ask for a half-body image first.
+- This pack covers this one model only; a second model is unverified.

@@ -1,0 +1,132 @@
+{
+  "schema": 2,
+  "model_name": "Yuning",
+  "name_zh": "语宁",
+  "version": "V3.0",
+  "run_dir": "../../../.example-run",
+  "originals": {
+    "P3-2": {
+      "path": "../../../tests/fixtures/phase2/P3-2.png",
+      "sha256": "113070790df219a6239fbdb40c4c05ad884a637be74d889c84f82511cf57b207"
+    },
+    "01": {
+      "path": "../../../tests/fixtures/phase2/01.png",
+      "sha256": "8d2eb6379b1e978293c32dc6452f90df027cf6da230b2c6af21d55aae858106d"
+    },
+    "02": {
+      "path": "../../../tests/fixtures/phase2/02.png",
+      "sha256": "20d3fd0087571e489f0ed2c0a8f8e3b7d8874de97d014908d5ab34a722e0a818"
+    },
+    "03": {
+      "path": "../../../tests/fixtures/phase2/03.png",
+      "sha256": "8b2a46f69f4cbb344a739f35a5c8c03c95d88a345204b1623ec9c37bd9c4a689"
+    },
+    "04": {
+      "path": "../../../tests/fixtures/phase2/04.png",
+      "sha256": "e754d5d9ba458ebd65e06d397471465e599338847770d54fc7d41b28aea26c01"
+    },
+    "05": {
+      "path": "../../../tests/fixtures/phase2/05.png",
+      "sha256": "c06ed002e29bbb5c3865d9479bf0d32c48be0c35cc4f3ee6dfcfb97fb1de85d5"
+    },
+    "06": {
+      "path": "../../../tests/fixtures/phase2/06.png",
+      "sha256": "a6d81c833a32b07639ccedd397c7252c72bee3a1cceecf40da5056269ebb0f39"
+    },
+    "07": {
+      "path": "../../../tests/fixtures/phase2/07.png",
+      "sha256": "9b20d9edf1bf7b909d7396c43ba9fa531a4ff78fc625218c412f766de8002f00"
+    },
+    "08": {
+      "path": "../../../tests/fixtures/phase2/08.png",
+      "sha256": "2cd94aafa5fcefb5547a0bf293920593018dcfdb468f972a6433ab7cd81d0388"
+    },
+    "09": {
+      "path": "../../../tests/fixtures/phase2/09.png",
+      "sha256": "bd1674b7addb634b92f05c151ba521e1e28284e3249ec609b8fd672f5ac68a57"
+    },
+    "10": {
+      "path": "../../../tests/fixtures/phase2/10.png",
+      "sha256": "ba3194997eee552c7fd6bf90d58c5e8eed5f4e5d7f2b8b876c45ec5d8f8814fa"
+    },
+    "11": {
+      "path": "../../../tests/fixtures/phase2/11.png",
+      "sha256": "e9753f55e92d015904c4ce023555096dcb9793c69c3d0b531268155105417f96"
+    },
+    "12": {
+      "path": "../../../tests/fixtures/phase2/12.png",
+      "sha256": "32f8aee955963629dc96a58f34b2f2b98e09de3701e6b1c5b959569956a98bfb"
+    }
+  },
+  "motion": {
+    "walk": {
+      "path": "../../../tests/fixtures/phase2/walk.png",
+      "sha256": "1916f89f9d0abee22d2f6f59dd1d7b0d7ce2ad6acc7b7446aa89f67d48dffbbb"
+    },
+    "sit": {
+      "path": "../../../tests/fixtures/phase2/sit.png",
+      "sha256": "ba34ad58befcc72b7f6c53e391d41c6eb1ca0dfeeefb042a32c8d4adaa6ea654"
+    },
+    "smile": {
+      "path": "../../../tests/fixtures/phase2/smile.png",
+      "sha256": "75a9a5d4ab7289c4d9d40a470d047e6327844f232353a9083e2b8e0f3a9f3b1f"
+    }
+  },
+  "texts": {
+    "how_to_use": {
+      "zh": "../../../tests/fixtures/phase2/fixture.txt",
+      "en": "../../../tests/fixtures/phase2/fixture.txt"
+    },
+    "originality": {
+      "zh": "../../../tests/fixtures/phase2/fixture.txt",
+      "en": "../../../tests/fixtures/phase2/fixture.txt"
+    },
+    "boundary": {
+      "zh": "../../../tests/fixtures/phase2/fixture.txt",
+      "en": "../../../tests/fixtures/phase2/fixture.txt"
+    }
+  },
+  "identity_card": {
+    "zh": {
+      "path": "../../../tests/fixtures/phase2/card.png",
+      "sha256": "5988a6049b9c4d2e9418cd7fcb96f57b49cfbc95d2f8f5db9cab3027967fbf41"
+    },
+    "en": {
+      "path": "../../../tests/fixtures/phase2/card-en.png",
+      "sha256": "2dc3f97a8bd183c0586cedfadfcb0041d62333797c074eb3ef7f876b86ee862c"
+    }
+  },
+  "diagram": {
+    "path": "../../../tests/fixtures/phase2/diagram.png",
+    "sha256": "9073e9e2db60563f5fb251fd4f14dfc492b2d611923308b8aaacf8b0e963ca04"
+  },
+  "lookset": {
+    "confirmation_note": "TEST FIXTURE ONLY; no human approval asserted",
+    "supplement_notes": {
+      "01": "TEST FIXTURE ONLY; no human approval asserted",
+      "02": "TEST FIXTURE ONLY; no human approval asserted",
+      "03": "TEST FIXTURE ONLY; no human approval asserted",
+      "04": "TEST FIXTURE ONLY; no human approval asserted",
+      "05": "TEST FIXTURE ONLY; no human approval asserted",
+      "06": "TEST FIXTURE ONLY; no human approval asserted",
+      "07": "TEST FIXTURE ONLY; no human approval asserted",
+      "08": "TEST FIXTURE ONLY; no human approval asserted",
+      "09": "TEST FIXTURE ONLY; no human approval asserted",
+      "10": "TEST FIXTURE ONLY; no human approval asserted",
+      "11": "TEST FIXTURE ONLY; no human approval asserted",
+      "12": "TEST FIXTURE ONLY; no human approval asserted"
+    },
+    "locked": [
+      "rounded cheeks and small rounded chin",
+      "soft brows and gently downturned almond eyes",
+      "balanced regular build, natural waist, realistic leg length"
+    ],
+    "adjustable": [
+      "hairstyle",
+      "makeup",
+      "expression",
+      "earrings and accessories"
+    ],
+    "styling_lock": "identity"
+  }
+}

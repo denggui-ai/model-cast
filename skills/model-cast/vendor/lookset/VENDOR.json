@@ -1,0 +1,24 @@
+{
+  "name": "lookset",
+  "tag": "v0.1.0-beta.3",
+  "commit": "139d1780834e0e6c3b147c86c945c00b1ea8defb",
+  "license": "Apache-2.0",
+  "modified": false,
+  "files": [
+    {
+      "path": "model-reference.py",
+      "source": "skills/lookset/scripts/model-reference.py",
+      "sha256": "45994685210b898117589b2dedb4a1bc735c5b2a7258f45ab14d6d0e780d2ad5"
+    },
+    {
+      "path": "model_reference.py",
+      "source": "skills/lookset/scripts/model_reference.py",
+      "sha256": "a471ac6f9d3356c2dca1e0250a85d6eef2e94fd3eefafb80e9de8e94b320b465"
+    },
+    {
+      "path": "LICENSE",
+      "source": "LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    }
+  ]
+}
