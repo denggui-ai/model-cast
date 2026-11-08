@@ -1,4 +1,4 @@
-# pack-manifest schema 2（V3.0 直接上传 4 张原图；V2.0 的 zip 结构及 schema 1 / V1.x 的 7 入口结构留在 git 历史）
+# pack-manifest schema 2（核心四图 + 完整 AI 多文件资料库；V2.0 ZIP 结构留在 git 历史）
 
 所有对象严格校验：缺键或多键退出 2，错误包含字段位置。所有下列字段必填，无可选键。路径为非空字符串；相对路径以 manifest 所在目录为基准，绝对路径可用。图片须 PNG，sha256 为 64 位小写十六进制。文本必须存在且非空。
 
@@ -31,15 +31,21 @@ asset 恰好两个键：`path`、`sha256`。originals 与识别卡、示意图�
 │   ├── 04_全身正面.png                           │   ├── 04_全身正面.png
 │   ├── 06_全身侧面.png                           │   ├── 06_全身侧面.png
 │   └── 07_全身背面.png                           │   └── 07_全身背面.png
-└── 3_生活场景图（可直接用）/walk sit smile.png    └── 3_Lifestyle/walk sit smile.png
+├── 3_生活场景图（可直接用）/walk sit smile.png    ├── 3_Lifestyle/walk sit smile.png
+└── 4_完整AI资料库（多文件上传）/                  └── 4_AI_Model_Library_MultiUpload/
+    ├── 01–12 真实模特角度图
+    ├── 13–15 行走、坐姿、自然微笑
+    ├── 16 N2 灰色人偶相机角度指南
+    ├── START-HERE.md
+    └── asset-index.json
 <model>_<V>_工程资料/（不交付）
 ├── shooting-guide.png、清单/pack-manifest-<V>.json、清单/version-manifest-<V>.json
 └── <model>_品牌模特资料包_<V>-model-reference/   ← export_lookset 写入（D2）
 ```
 
-上传目录恰好 4 张 `NN_角度.png`：01、04、06、07，按原图字节复制，中英包文件名、字节相同；没有 zip 或 AI 说明。版本清单的 `upload_files` 恰好 4 行，每行记录 `filename` 和 `sha256`。
+`2_上传给AI` 保留恰好 4 张核心原图：01、04、06、07，便于最小参考任务。`4_完整AI资料库` 包含 12 张真实模特角度、3 张动态素材和 N2 指南，共 16 张 PNG，另含双语 START-HERE 与机器可读 `asset-index.json`。用户在 ChatGPT/Codex 中可多选该目录全部文件上传；AI 读取索引和视觉内容后选择最少必要参考。文件名是辅助标签，不是唯一识别依据。N2 仅为角度/景别指南，不是身份参考、姿势线稿或图像编辑底图。C10 人物姿势线稿未实现，不进入当前包。版本清单 `upload_files` 仍记录核心四图，另以 `ai_library_files` 记录完整资料库 16 张图片及 SHA-256。
 
-check_pack 逐项核对：三个文件夹的文件和目录集合、每个复制件哈希、合并文本与源一致、上传目录恰好上述 4 张原图且没有展示图或生活场景图、每个文件都不是内部证据内容、生活场景图恰好 3 张、版本清单的 `upload_files` 与原图一致、工程资料的清单副本与 RUN/c8 一致；D2 里只能有原图（`--require-lookset` 要求 D2 存在）。
+check_pack 逐项核对：卖家包文件和目录集合、每个复制件哈希、文本与源一致、核心上传目录恰好四张原图、生活场景图恰好三张、AI 资料库恰好 16 张 PNG 且 asset-index 与 manifest 一致、版本清单两组哈希记录与原图一致、工程资料清单与 RUN/c8 一致；D2 仍只包含 Lookset 规定的原图（`--require-lookset` 要求 D2 存在）。
 
 RUN/c8 的证据按版本命名：`version-manifest-<V>.json`、`lookset-spec-<V>.json`、`lookset-validate-<V>.json`；已存在就拒绝（退出 2），旧版本文件不动。
 

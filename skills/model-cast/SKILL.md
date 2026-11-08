@@ -7,7 +7,7 @@ description: 为一条商品线创建原创成年女性电商模特，从商品�
 
 ## Workflow 与授权
 
-本技能执行 C1–C8 和 C11（含 N2 示意图）；C4 主脸描述可用[选角词表](references/casting-vocabulary.md)。不继承 v0.1 / v0.2，旧阵容 Lina、Jun 不进新版。禁止用真人照片当底图、模仿任何真人或名人；商品图含人物时只取商品，不取人物身份。只用 Owner 自有或获授权的商品图。缺输入则停下索取，不替 Owner 选图。
+本技能执行 C1–C8 和 C11（含 N2 示意图）；C4 主脸描述可用[选角词表](references/casting-vocabulary.md)。用户明确提出面部审美、定妆或面部修改需求时，按[面部定妆设计指导](references/face-casting.md)组织观察与迭代；该指导不改变固定提示词、状态机、授权闸门或原图保护规则。不继承 v0.1 / v0.2 的旧阵容或旧状态机；旧阵容 Lina、Jun 不进新版。仅选择性采用面部定妆设计指导。禁止用真人照片当底图、模仿任何真人或名人；商品图含人物时只取商品，不取人物身份。只用 Owner 自有或获授权的商品图。缺输入则停下索取，不替 Owner 选图。
 
 生图付费闸门：每次生图前确认 Owner 已批额度，报告累计已用和剩余张数（总池 500），以及本批授权余量。额度不足先停下等 Owner；自检淘汰的图片也计数。宿主执行前检查版本锁定为 `codex-cli 0.161.0`，变化时停下重跑 T0。每张单独调用，参考图显式传路径，不依赖最近几张图。Claude Code 宿主用 `codex exec`；Codex 宿主用原生生图。生图由当前宿主提供的原生能力执行；本技能不内置生图模型。
 
@@ -64,6 +64,6 @@ C6 每张与 01、04 并排自检，07/10/11/12 标“身份未验证”，10–
 
 C7 用 build_records.py --run-dir RUN --selection-ids <正式选人那一轮的回执 id，逗号分隔> 汇总：第 1 段只放这一轮的固定提示词、候选和选中原话，其余候选回执单列为“历史候选试验”；第 2 段只放定人和补角度的调用；第 4 段只列这两类调用的输出哈希。不写判断。Claude 写中英原创性说明 → **originality_ready**，Owner 认可 → **gate3_pass**。不承诺全球唯一或低撞脸率，不编身高三围。
 
-C8 按 [清单契约与可执行示例](references/pack-manifest.schema.md)（schema 2，V3.0 直接上传原图）填清单，使用 build_pack.py、check_pack.py 和 export_lookset.py。一次打出中文包 `<名字>_品牌模特资料包_V主.次`、英文包 `<名字>_Brand_Model_Pack_V主.次_EN` 和工程资料 `<名字>_V主.次_工程资料`（不交付）。卖家包三个文件夹：1 给你看（使用说明、角色识别卡、原创性与使用边界，不上传）；2 上传给 AI（只有 01、04、06、07 四张原图 `NN_角度.png`，中英包文件名和字节相同，没有 zip 或 AI 说明）；3 生活场景图。卖家文字取 [模板目录](references/pack-templates/)，原创性说明取 RUN `c7/originality.*`；不再有入口文件夹和提示词文件，用法标“未验证”。角色识别卡用 make_card.py（card-spec schema 2：身份档案、怎么认出她、转身图、适合的商品和顾客、为什么定她〔写选角说明，不用店主原话代替理由〕、使用规则；默认 cream 主题）只拿原图排版，记忆点特写须是 crop.py 从 01 裁的；check_pack 核对卡的来源都是原图或逐像素一致的裁片。Owner 看图后才进包。示意图、清单、D2 只放工程资料。打包不覆盖旧版，按字节复制；RUN/c8 的证据按版本命名（`*-V主.次.*`），已有就拒绝。
+C8 按 [清单契约与可执行示例](references/pack-manifest.schema.md)（schema 2）填清单，使用 build_pack.py、check_pack.py 和 export_lookset.py。一次打出中文包、英文包和工程资料。卖家包提供四类内容：1 给你看（使用说明、角色识别卡、原创性与使用边界，不上传）；2 核心四图（01、04、06、07，适合只需最小身份参考的任务）；3 生活场景图（walk/sit/smile，可直接展示，不替代身份参考）；4 完整 AI 资料库（12 张真实模特角度、3 张动态素材、N2 灰色人偶相机角度指南、START-HERE 和 asset-index；用户可在 ChatGPT/Codex 一次多选上传）。AI 应根据自然语言任务选择最少必要参考，并说明实际选择；不能把 N2 当模特身份或图像编辑底图。读取/选择附件不代表图像工具一定收到这些参考；宿主无法传递时须提示用户直接补传。C10 人物姿势线稿当前未实现，不得宣称已交付。Lookset D2 独立输出，不混入 N2、C10 或普通用户说明。卖家文案取 [模板目录](references/pack-templates/)，原创性说明取 RUN `c7/originality.*`。角色识别卡用 make_card.py（card-spec schema 2）只拿原图排版，记忆点特写须是 crop.py 从 01 裁的；check_pack 核对卡来源。Owner 看图后才进入最终交付。打包不覆盖旧版，按字节复制；RUN/c8 的证据按版本命名，已有就拒绝。
 
 D2 只调用 vendor/lookset 的 v0.1.0-beta.3（139d178）工具，运行前对比写死哈希及 VENDOR.json；通过 python3 -B 执行 export + validate，读回输出存 RUN/c8/lookset-validate-V主.次.json；D2 导出到工程资料里的 `<中文包名>-model-reference`。reference=P3-2，supplements=01–12，Owner 确认原话加日期。check_pack 的 problems=0 且 Lookset validate 通过 → **pack_built**；Owner 看整包认可 → **gate4_pass**。D2 验证失败不挡 D1：D2 标“未交付”并记原因，以同版本同批原图补出。静态检查只算结构对，不算人对或 L3；Lookset 真正出图与第三阶段网页实测均不在本次任务内。
