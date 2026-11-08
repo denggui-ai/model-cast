@@ -1,6 +1,6 @@
-# model-cast v0.2.0 — release candidate
+# model-cast v0.2.0 — formal source release
 
-This release candidate packages the merged T15 finalization work for the proposed `v0.2.0` formal release: the ordinary ChatGPT/Codex multi-file visual-reference library, the Owner-authorized Yuning project showcase, and the selectively integrated face-casting design guidance with Evals 19–23. The Git tag and GitHub Release are not created yet.
+This formal release packages the merged T15 finalization work: the ordinary ChatGPT/Codex multi-file visual-reference library, the Owner-authorized Yuning project showcase, and the selectively integrated face-casting design guidance with Evals 19–23.
 
 The seller-package format is V3.0; it is not the software release version. The release source contains the package builder and templates, not private RUN records, private handoffs, or owner-specific generated seller packages.
 
