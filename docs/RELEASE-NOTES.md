@@ -6,7 +6,7 @@ The public `main` branch includes the sanitized T15 V3 direct-upload source snap
 
 The ordinary ChatGPT/Codex path provides a multi-file visual library: 12 model views, three action/expression examples, N2 camera/framing guide, `START-HERE.md`, and `asset-index.json`. The four core identity images remain available as a lightweight set. The Lookset D2 adapter remains separate.
 
-The Yuning showcase uses Owner-authorized AI-generated project images. README claims distinguish generated assets, Owner acceptance, structural validation, and actual downstream image tests. C10 pose line art is not implemented. V0.2 remains on a separate experimental branch; its practical nose-tip target was not accepted.
+The Yuning showcase uses Owner-authorized AI-generated project images. README claims distinguish generated assets, Owner acceptance, structural validation, and actual downstream image tests. C10 pose line art is not implemented. The face-casting design guide and Evals 19–23 have been selectively integrated from V0.2. The older V0.2 branch remains separate; its practical nose-tip target was not accepted and it has not been merged wholesale.
 
 ## Validation limits
 

@@ -4,7 +4,7 @@ Tested on macOS with Python 3.14; 2026-11-08.
 
 ```text
 PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider
-241 passed in 30.56s
+242 passed in 33.18s
 ```
 
 The suite uses synthetic fixtures and does not invoke image generation. It covers source/manifest hashes, version boundaries, package structure, the four-image core set, the 16-image AI library, generated asset-index integrity, no-overwrite behavior, synthetic receipts/contamination, image-source checks, and the pinned Lookset exporter.
@@ -33,4 +33,4 @@ A new V3.0 multi-file candidate was built into a new output directory; the previ
 
 Reading/selecting attachments does not prove that a downstream image-generation/editing tool received them. The user instructions require the host to confirm actual reference handoff or ask for direct re-upload. ChatGPT and Codex behavior must not be described as identical until both are tested.
 
-C10 human-pose line art remains unimplemented. N2 is a camera/framing guide, not model identity, a pose drawing, or a clothing drawing. C5 was an internal identity-continuity check, not garment-fidelity validation. V0.2's practical nose-tip edit target was not accepted. Automated tests and package validation do not prove image quality or Owner acceptance.
+The face-casting guide is documentation/eval guidance, not a precise facial-edit controller. The V0.2 face-casting guide is selectively integrated with Evals 19–23; this validates guidance/eval structure, not actual edit quality. C10 human-pose line art remains unimplemented. N2 is a camera/framing guide, not model identity, a pose drawing, or a clothing drawing. C5 was an internal identity-continuity check, not garment-fidelity validation. V0.2's practical nose-tip edit target was not accepted. Automated tests and package validation do not prove image quality or Owner acceptance.

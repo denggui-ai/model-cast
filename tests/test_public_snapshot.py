@@ -61,3 +61,13 @@ def test_public_skill_has_no_one_off_implementation_instruction():
 
 def test_private_state_directory_remains_ignored():
     assert "state/" in (ROOT / ".gitignore").read_text().splitlines()
+
+
+def test_face_casting_guidance_is_scoped_and_eval_covered():
+    guide = SKILL / "references/face-casting.md"
+    assert guide.is_file()
+    skill_text = (SKILL / "SKILL.md").read_text()
+    assert "references/face-casting.md" in skill_text
+    assert "不改变固定提示词、状态机、授权闸门" in skill_text
+    evals = json.loads((SKILL / "evals/evals.json").read_text())["evals"]
+    assert {19, 20, 21, 22, 23}.issubset({row["id"] for row in evals})

@@ -6,7 +6,7 @@
 | Ordinary AI asset library | `main` (this finalization PR) | Builder now creates a multi-file ChatGPT/Codex library with 12 model views, 3 action examples, N2, START-HERE and asset-index. ChatGPT recognized 16/16 assets; one side-view generation test was limited and did not prove independent identity control from both references. |
 | Lookset D2 | `main` | Separate adapter export and structure/readback validation; full downstream commercial image workflow is not claimed as verified. |
 | C10 human-pose line art | Not implemented | Original plan was conditional and limited; no line art is included or claimed. |
-| V0.2 face casting | `opensource/v0.2-face-casting` | Separate experiment; real nose-tip edit target not accepted. Not merged into main. |
+| Face-casting design guidance | `main` + `opensource/v0.2-face-casting` | Guidance and Evals 19–23 selectively integrated; real nose-tip edit target not accepted. Remaining experimental branch is not merged wholesale. |
 | Public showcase | `main` (this finalization PR) | Owner-authorized AI-generated Yuning face/full-body/C6/N2 examples documented with limitations. |
 | Formal release | None | No new release/tag created by this work. Owner review is still required. |
 
