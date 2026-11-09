@@ -94,24 +94,6 @@ shasum -a 256 -c SHA256SUMS
 
 生图需要宿主工具具备原生图像能力、账户权限，并获得用户明确授权。本 Skill 不捆绑图像模型，也不提供生图额度。
 
-## 项目示例：语宁（Yuning）
-
-语宁是 AI 生成的虚构模特，不是真人照片。Owner 已授权将以下选定图片用于本项目公开展示。
-
-| 面部身份参考 | 已确认的正面全身参考 |
-|---|---|
-| ![语宁面部身份参考](docs/assets/showcase/yuning-face-identity.png) | ![语宁正面全身参考](docs/assets/showcase/yuning-fullbody-front.png) |
-
-C6 概览包含 12 个模特视角和 3 个动作/表情示例。Owner 的视觉反馈接受了 13 张补充输出。部分视角不展示面部，因此只能作为身体或构图参考，不能作为面部身份验证依据。
-
-![语宁 C6 模特视角概览](docs/assets/showcase/yuning-c6-angle-overview.png)
-
-### N2 镜头与构图参考
-
-N2 包含 12 张无脸、无发型、无服装的灰色人偶图，用于表达相机方向、景别和裁切。它不是语宁本人、服装线稿或图像编辑底图。
-
-![N2 灰色人偶镜头参考](docs/assets/showcase/n2-grey-mannequin-camera-guide.png)
-
 ## 下游工作流
 
 ### ChatGPT 或 Codex
