@@ -12,33 +12,46 @@ It guides casting, identity approval, model-view preparation, and reference hand
 
 Yuning is an AI-generated fictional model, not a photograph of a real person. The Owner authorized these selected images for this public showcase.
 
-![Yuning — approved front full-body model reference](docs/assets/showcase/yuning-fullbody-front.png)
+<table>
+  <tr>
+    <td width="50%" align="center">
+      <img src="docs/assets/showcase/yuning-face-identity.png" width="100%" alt="Yuning face identity reference"/>
+      <br/><strong>Face identity</strong>
+    </td>
+    <td width="50%" align="center">
+      <img src="docs/assets/showcase/yuning-fullbody-front.png" width="100%" alt="Yuning approved front full-body reference"/>
+      <br/><strong>Front full-body</strong>
+    </td>
+  </tr>
+</table>
 
-| Face identity | Full model-view set |
-|---|---|
-| ![Yuning face identity](docs/assets/showcase/yuning-face-identity.png) | ![C6 model views and action examples](docs/assets/showcase/yuning-c6-angle-overview.png) |
+### C6 — Full model-view reference set
 
-The C6 reference set contains 12 model views and three selected action/expression examples. C6 is the identity source: use it to establish the model's face, body proportions, and accepted model views.
+C6 contains 12 model views and three selected action/expression examples. It is the primary identity reference for the model's face, body proportions, and accepted views.
 
-## Supporting visual guides
+![C6 complete model-view and action/expression reference set](docs/assets/showcase/yuning-c6-angle-overview.png)
 
-The model comes first. The grey, faceless 3D mannequins below are optional supporting references; they are not alternative models, identity references, or clothing assets.
+## Supporting visual references
 
-### N2 — Camera and framing
+Establish the model first, then select supporting references only when the task needs them. The grey, faceless 3D mannequins below are not another model, identity references, or clothing assets.
+
+### N2 — Camera and framing guide
 
 ![N2 grey 3D mannequin camera guide](docs/assets/showcase/n2-grey-mannequin-camera-guide.png)
 
-N2 communicates camera direction, viewing angle, framing, and crop.
+N2 communicates camera direction, viewing angle, framing, and crop. Use it only when the camera or composition needs clarification.
 
 ### C10 — Optional pose references
 
-| Side walking | Side sitting | Hands-in-pockets |
-|---|---|---|
-| ![C10 side walking mannequin](docs/assets/c10/C10-01-Walk-Side.png) | ![C10 side sitting mannequin](docs/assets/c10/C10-02-Sit-Side.png) | ![C10 hands-in-pockets mannequin](docs/assets/c10/C10-03-Hands-In-Pockets.png) |
+C10 communicates body action and limb placement when C6 does not already show the required pose. It is a standalone optional supplement, not a stage in the standard Skill workflow and not part of the current 16-image library.
 
-C10 communicates body action and limb placement when C6 does not already show the required pose. It is an optional, separately selected supplement—not a stage in the standard Skill workflow or part of the current 16-image library package.
+Open an individual reference when needed:
 
-**Keep the references distinct:** C6 = who the model is; C10 = how the body moves; N2 = how the scene is framed. Select only what the task needs. See [C10 usage](docs/C10-USAGE.md) for the reference-selection rules.
+- [Side walking (PNG)](docs/assets/c10/C10-01-Walk-Side.png) · [SVG source](docs/assets/c10/C10-01-Walk-Side.svg)
+- [Side sitting (PNG)](docs/assets/c10/C10-02-Sit-Side.png) · [SVG source](docs/assets/c10/C10-02-Sit-Side.svg)
+- [Hands-in-pockets (PNG)](docs/assets/c10/C10-03-Hands-In-Pockets.png) · [SVG source](docs/assets/c10/C10-03-Hands-In-Pockets.svg)
+
+**Keep their roles distinct:** C6 = who the model is; C10 = how the body moves; N2 = how the scene is framed. Select only what the task needs. See [C10 usage](docs/C10-USAGE.md) for reference-selection rules.
 
 ## What the workflow prepares
 
