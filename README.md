@@ -55,15 +55,20 @@ The core value is **not the mannequin style**. It is the end-to-end process of s
 
 The grey mannequin is a practical visual language for camera and pose instructions. It is not the final deliverable and should not be mistaken for the AI model itself.
 
+## What the seller receives
+
+The generated seller package is delivered in Chinese and English, alongside a separate engineering package. Its four folders have distinct jobs:
+
+1. **Read first — `1_给你看`**: usage instructions, model identity card, originality statement, and usage boundaries. This folder is for the owner to review; it is not uploaded as image references.
+2. **Core identity images — `2_上传给AI`**: four essential images (01, 04, 06, 07) for tasks that need a compact identity reference set.
+3. **Lifestyle examples — `3_生活场景图`**: selected walking, sitting, and natural-smile images for direct visual use; these do not replace identity anchors.
+4. **Complete AI library — `4_完整AI资料库（多文件上传）`**: 12 model views, three action materials, the N2 grey mannequin camera guide, `START-HERE.md`, and `asset-index.json` for multi-file ChatGPT/Codex handoff.
+
+The separate **Lookset D2** export is an engineering handoff, not another folder to mix into the ordinary-AI upload set.
+
 ## What is included in this public repository
 
-- The `skills/model-cast/` Skill and its workflow instructions.
-- Scripts, reference templates, and package-building/validation tools.
-- Public Yuning example images shown above.
-- The C6/N2/C10 reference definitions and the ChatGPT/Codex handoff workflow.
-- A separate Lookset D2 adapter.
-
-The repository contains the reusable source and public examples. Owner-specific V3.0 seller packages and private RUN records are not published as public release assets.
+The public repository contains the reusable `skills/model-cast/` Skill, scripts, templates, package-building and validation tools, and the public Yuning examples shown above. Owner-specific generated V3.0 seller packages and private RUN records are not published as public release assets.
 
 model-cast is not an image-generation service, virtual try-on system, clothing-design tool, or commercial photography pipeline. Final image generation and garment fidelity depend on downstream tools and the user's workflow.
 
