@@ -10,6 +10,24 @@ It is **not** an image-generation service, virtual try-on system, clothing-desig
 
 ## Final deliverables
 
+
+### See the actual outputs
+
+**C6 · The model identity and view set**
+
+![Yuning C6 model views](docs/assets/showcase/yuning-c6-angle-overview.png)
+
+**N2 · Camera and framing references**
+
+![N2 grey mannequin camera guide](docs/assets/showcase/n2-grey-mannequin-camera-guide.png)
+
+**C10 · Three optional pose references**
+
+| Side walking | Side sitting | Hands-in-pockets |
+|---|---|---|
+| <img src="docs/assets/c10/C10-01-Walk-Side.png" width="180" alt="C10 side walking mannequin" /> | <img src="docs/assets/c10/C10-02-Sit-Side.png" width="180" alt="C10 side sitting mannequin" /> | <img src="docs/assets/c10/C10-03-Hands-In-Pockets.png" width="180" alt="C10 hands-in-pockets mannequin" /> |
+
+
 This repository gives you the Skill, its reference workflow, and a public example of the resulting assets:
 
 - **The model-cast Skill** — casting, identity approval, asset preparation, and handoff workflow in [`skills/model-cast/`](skills/model-cast/).

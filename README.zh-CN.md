@@ -10,6 +10,24 @@ model-cast 是一个开源 Skill，用于创建原创成年虚构电商模特，
 
 ## 最终交付物
 
+
+### 直接查看实际交付成果
+
+**C6 · 模特身份与多视角资料**
+
+![语宁 C6 模特视角总览](docs/assets/showcase/yuning-c6-angle-overview.png)
+
+**N2 · 镜头方向与构图参考**
+
+![N2 灰色人偶镜头参考](docs/assets/showcase/n2-grey-mannequin-camera-guide.png)
+
+**C10 · 三张可选姿势参考**
+
+| 侧面行走 | 侧面坐姿 | 双手插兜 |
+|---|---|---|
+| <img src="docs/assets/c10/C10-01-Walk-Side.png" width="180" alt="C10 侧面行走人偶" /> | <img src="docs/assets/c10/C10-02-Sit-Side.png" width="180" alt="C10 侧面坐姿人偶" /> | <img src="docs/assets/c10/C10-03-Hands-In-Pockets.png" width="180" alt="C10 双手插兜人偶" /> |
+
+
 这个仓库交付 Skill、配套参考工作流，以及公开展示的实际资产示例：
 
 - **model-cast Skill** —— 选角、身份确认、资料准备和交付流程：[`skills/model-cast/`](skills/model-cast/)。
