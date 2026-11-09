@@ -1,78 +1,83 @@
+<div align="center">
+
 # model-cast
 
-**Create an original AI fashion model. Establish her visual identity. Build a reusable reference library.**
+### Create a dedicated AI fashion model for your product line.
 
-[简体中文](README.zh-CN.md) · **English**
+From casting and identity approval to a reusable visual reference library.
 
-model-cast is an open-source Skill for creating original adult fictional fashion models and preparing structured visual references for downstream AI workflows.
+<img src="docs/assets/showcase/yuning-fullbody-front.png" alt="Yuning — original fictional AI fashion model, front full-body" width="58%"/>
 
-It guides casting, identity approval, model-view preparation, and reference handoff. The central deliverable is **the model and her reusable identity/reference set**—not the grey mannequins used to explain camera angles or poses.
+**Yuning · Original AI-generated fictional model**
 
-## Meet the model
+</div>
 
-Yuning is an AI-generated fictional model, not a photograph of a real person. The Owner authorized these selected images for this public showcase.
+model-cast is an open-source Skill for creating original adult fictional fashion models, approving their visual identity, and preparing reusable references for downstream AI workflows.
 
-<table>
-  <tr>
-    <td width="50%" align="center">
-      <img src="docs/assets/showcase/yuning-face-identity.png" width="100%" alt="Yuning face identity reference"/>
-      <br/><strong>Face identity</strong>
-    </td>
-    <td width="50%" align="center">
-      <img src="docs/assets/showcase/yuning-fullbody-front.png" width="100%" alt="Yuning approved front full-body reference"/>
-      <br/><strong>Front full-body</strong>
-    </td>
-  </tr>
-</table>
+The showcase images are authorized AI-generated project assets, not photographs of a real person.
 
-### C6 — Full model-view reference set
+---
 
-C6 contains 12 model views and three selected action/expression examples. It is the primary identity reference for the model's face, body proportions, and accepted views.
+## Build a complete model identity from the face
 
-![C6 complete model-view and action/expression reference set](docs/assets/showcase/yuning-c6-angle-overview.png)
+<div align="center">
+<img src="docs/assets/showcase/yuning-face-identity.png" alt="Yuning face identity reference" width="42%"/>
 
-## Supporting visual references
+**Face identity reference**
+</div>
 
-Establish the model first, then select supporting references only when the task needs them. The grey, faceless 3D mannequins below are not another model, identity references, or clothing assets.
+A model should be more than a collection of images that merely look alike. model-cast guides casting, identity approval, and the preparation of consistent model views.
 
-### N2 — Camera and framing guide
+### C6 · Model visual references
 
-![N2 grey 3D mannequin camera guide](docs/assets/showcase/n2-grey-mannequin-camera-guide.png)
+<img src="docs/assets/showcase/yuning-c6-angle-overview.png" alt="C6 model reference sheet with 12 views and 3 action or expression examples" width="100%"/>
 
-N2 communicates camera direction, viewing angle, framing, and crop. Use it only when the camera or composition needs clarification.
+**12 model views · 3 action/expression examples**
 
-### C10 — Optional pose references
+C6 is the core of the deliverable: the actual model images define face identity, body proportions, and approved views. The overview above is for browsing; downstream work uses the individual original files in the reference package.
 
-C10 communicates body action and limb placement when C6 does not already show the required pose. It is a standalone optional supplement, not a stage in the standard Skill workflow and not part of the current 16-image library.
+---
 
-Open an individual reference when needed:
+## References prepared for downstream AI workflows
 
-- [Side walking (PNG)](docs/assets/c10/C10-01-Walk-Side.png) · [SVG source](docs/assets/c10/C10-01-Walk-Side.svg)
-- [Side sitting (PNG)](docs/assets/c10/C10-02-Sit-Side.png) · [SVG source](docs/assets/c10/C10-02-Sit-Side.svg)
-- [Hands-in-pockets (PNG)](docs/assets/c10/C10-03-Hands-In-Pockets.png) · [SVG source](docs/assets/c10/C10-03-Hands-In-Pockets.svg)
+The standard AI library contains 16 images:
 
-**Keep their roles distinct:** C6 = who the model is; C10 = how the body moves; N2 = how the scene is framed. Select only what the task needs. See [C10 usage](docs/C10-USAGE.md) for reference-selection rules.
+- **12** views of the actual model
+- **3** model action/expression examples
+- **1** N2 grey-mannequin camera/framing guide
 
-## What the workflow prepares
+It also includes `START-HERE.md` and a machine-readable `asset-index.json`. A lightweight four-image identity set is available when fewer references are sufficient.
 
-The repository includes the model-cast Skill, the multi-file ChatGPT/Codex library builder and index, and a separate Lookset D2 adapter.
+<details>
+<summary><strong>N2 · Camera and framing guide (expand)</strong></summary>
 
-The standard AI reference library contains:
+<img src="docs/assets/showcase/n2-grey-mannequin-camera-guide.png" alt="N2 grey faceless 3D mannequin camera and framing guide" width="100%"/>
 
-- 12 views of the actual model.
-- Three selected model action/expression examples.
-- One N2 grey-mannequin camera/framing guide.
-- `START-HERE.md` and a machine-readable `asset-index.json`.
+N2 uses grey, faceless 3D mannequins to communicate camera direction, viewing angle, framing, and crop. It defines camera and composition only—not model identity or body action.
+</details>
 
-That is 16 image assets plus the usage guide and index. A lightweight four-image identity set is also prepared for tasks that need fewer references.
+<details>
+<summary><strong>C10 · Optional pose references (expand)</strong></summary>
 
-### What is in this repository—and what is not
+C10 is a standalone optional supplement, used only when C6 does not already show the required pose. It is not a stage in the standard Skill workflow, is not part of the 16-image library, and is not included in Lookset D2.
 
-This public repository contains the model-cast Skill, packaging tools, documentation, and public showcase assets. Running the workflow prepares a separate model-specific reference package from your own approved assets. The Owner-specific V3.0 seller package is private and is not included in this repository. C10 is a post-v0.2.0 supplement on `main`; it does not alter the v0.2.0 release archive or existing V3.0 packages.
+- [Side walking PNG](docs/assets/c10/C10-01-Walk-Side.png) · [SVG source](docs/assets/c10/C10-01-Walk-Side.svg)
+- [Side sitting PNG](docs/assets/c10/C10-02-Sit-Side.png) · [SVG source](docs/assets/c10/C10-02-Sit-Side.svg)
+- [Hands-in-pockets PNG](docs/assets/c10/C10-03-Hands-In-Pockets.png) · [SVG source](docs/assets/c10/C10-03-Hands-In-Pockets.svg)
+
+C6 defines identity and body proportions; C10 communicates pose and limb placement only.
+</details>
+
+---
+
+## From casting to reference handoff
+
+1. **Cast** — Prepare a casting brief from the product line and compare candidates.
+2. **Approve identity** — Have the user approve the face and body references.
+3. **Prepare views** — Organize model angles and action/expression references, then run a product try-on test.
+4. **Hand off** — Build Chinese and English packages and a multi-file AI reference library.
 
 ## Get started
-
-### 1. Install the repository
 
 ```sh
 git clone https://github.com/denggui-ai/model-cast.git
@@ -83,53 +88,34 @@ python3 -m pip install -r requirements-dev.txt
 shasum -a 256 -c SHA256SUMS
 ```
 
-### 2. Install the Skill
+Install `skills/model-cast` into your supported agent skill directory. Back up any existing installation first; this repository does not overwrite an existing installation automatically.
 
-Install only `skills/model-cast` into your supported agent skill directory. Back up any existing installation first; this repository does not overwrite an existing installation automatically.
-
-### 3. Start with an approval-first request
+Start with an approval-first request:
 
 > Use model-cast to create an original adult fictional fashion model for my product line. First inspect the inputs and propose the casting plan; do not generate images until I approve.
 
-Image generation requires the host's native image capability, account access, and explicit user authorization. The Skill does not bundle an image model or provide generation credits.
+Image generation uses the host's native image capability. The Skill does not bundle an image model or provide generation credits; host access and explicit user authorization are required.
 
-## Downstream use
+## Downstream workflows and scope
 
-### ChatGPT and Codex
+**ChatGPT / Codex:** Upload the files in `4_完整AI资料库（多文件上传）` / `4_AI_Model_Library_MultiUpload` together. The index helps select the minimum relevant references. Recognizing an attachment does not prove that a downstream image tool received it. ChatGPT has a recorded 16/16 asset-recognition test, but independent identity control from multiple references is not conclusively established. Codex local-folder-to-image-tool handoff remains unverified. If the host cannot pass selected images through, attach the originals directly.
 
-Upload the files in `4_完整AI资料库（多文件上传）` / `4_AI_Model_Library_MultiUpload` together when using the full library. The index describes each asset and helps the AI select the smallest relevant reference set. Use the four-image lightweight set in `2_上传给AI` / `2_Upload_to_AI` when that is sufficient.
+**Lookset D2:** Use the separate adapter with P3-2 as the identity reference, model supplements 01–12, and `model.json`. Do not automatically add N2, C10, or ordinary-user instructions to D2. Lookset owns its separate pose planning, garment editing, photography workflow, and commercial QA.
 
-**Reference handoff depends on the host.** Recognizing or selecting an uploaded image does not prove that a downstream image-generation/editing tool received it as a reference. ChatGPT recognized 16/16 assets in a multi-file test, and limited pose-generation checks were performed; independent identity control from multiple references is not conclusively established. Codex local-folder-to-image-tool handoff remains unverified. If a host cannot pass selected images to its image tool, attach the selected originals directly rather than claiming they were used.
+model-cast prepares a model identity/reference set and hands it off to other tools. It is not an image-generation service, virtual try-on system, clothing-design tool, or commercial photography pipeline. Final image generation, identity preservation, and garment fidelity depend on downstream tools and the actual workflow. Automated tests do not prove image quality or commercial results.
 
-### Lookset D2
+### Public repository and model-specific packages
 
-Use the separate D2 adapter: P3-2 identity reference, model supplements 01–12, and `model.json`. Do not automatically add N2, C10, or ordinary-user instructions to D2. Lookset owns its separate pose planning, garment editing, photography workflow, and commercial QA.
-
-## Scope and validation
-
-model-cast prepares a model identity/reference set and hands it off to other tools. It is **not** an image-generation service, virtual try-on system, clothing-design tool, or commercial photography pipeline. Final image generation and garment fidelity depend on downstream tools and the user's workflow.
-
-| Area | Current status |
-|---|---|
-| C1–C8 and C11 model-creation workflow | Implemented; workflow and code checks passed |
-| C6 identity approval and visual references | Implemented; final identity approval depends on Owner review |
-| N2 12-view camera/framing guide | Generated and self-checked |
-| C10 three-pose supplement | Available on current `main`; ChatGPT pose-generation examples recorded. Identity preservation is qualitative, not independently verified |
-| ChatGPT multi-file library | Implemented; 16/16 asset recognition recorded; generation evidence is limited |
-| Codex multi-file end-to-end handoff | Not verified |
-| Lookset D2 export | Package structure and readback validated; complete commercial workflow not verified |
-
-Automated tests validate scripts, manifests, package contents, and synthetic fixtures. They do not prove generated-image quality, identity preservation, garment fidelity, or Owner acceptance. Fine local face editing has not been established as reliable.
+This public repository contains the Skill, packaging tools, documentation, and public showcase assets. Running the workflow prepares a separate reference package from your own approved model assets. The Owner-specific V3.0 seller package is private and is not included here. C10 is a standalone supplement added to `main` after v0.2.0; the v0.2.0 release and existing V3.0 packages remain unchanged.
 
 ## Project resources
 
 - **Formal source release:** [v0.2.0](https://github.com/denggui-ai/model-cast/releases/tag/v0.2.0)
-- [Public project status](docs/PROJECT-STATUS.md) · [Release notes](docs/RELEASE-NOTES.md)
-- [C10 usage](docs/C10-USAGE.md) · [Public POC results](docs/POC-RESULTS.md)
-- [Development Protocol](docs/DEVELOPMENT-PROTOCOL.md) · [Project Adapter](docs/PROJECT-ADAPTER.md)
+- [Project status](docs/PROJECT-STATUS.md) · [Release notes](docs/RELEASE-NOTES.md) · [Public POC results](docs/POC-RESULTS.md)
+- [C10 usage](docs/C10-USAGE.md) · [Development Protocol](docs/DEVELOPMENT-PROTOCOL.md) · [Project Adapter](docs/PROJECT-ADAPTER.md)
 - [Third-party notices](skills/model-cast/THIRD_PARTY_NOTICES.md)
 
-To run the automated checks:
+Run the automated checks:
 
 ```sh
 PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider
