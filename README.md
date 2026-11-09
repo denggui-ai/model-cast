@@ -32,7 +32,7 @@ N2 contains 12 faceless, hairless, clothing-free grey mannequin views. It illust
 
 ### What is not claimed
 
-- C10 human-pose line art was planned but is **not implemented or included** in this release.
+- C10 pose-guide supplement (three grey mannequin references: walking, seated, hands-in-pockets) was added after v0.2.0 in PR #7. It is separate from the original C10 human-pose line-art concept, which remains unimplemented.
 - The V0.2 face-casting design guidance and Evals 19–23 are selectively integrated. The two-image practical nose-tip test did not clearly achieve its target; fine local facial editing is not claimed as reliable. The older V0.2 branch remains separate and is not merged wholesale.
 - C5's three-product trial was an internal identity-continuity check. It is not evidence of reliable garment fidelity or a public try-on feature.
 - D2 passed package structure/export/readback validation. That is not a claim that the complete Lookset commercial image workflow has been independently validated with this model.
@@ -59,7 +59,7 @@ Use the separate D2 adapter: P3-2 identity reference, model supplements 01–12,
 | Face/body identity approval and identity record | Implemented; depends on Owner review |
 | C6 12 model views + 3 action/expression examples | Generated; Owner accepted; views without faces are not face-identity proof |
 | N2 12-view grey mannequin guide | Generated and self-checked; included as a visual guide |
-| C10 human-pose line art | Planned in the original blueprint; not implemented |
+| C10 grey mannequin pose supplement | Three optional pose references implemented after v0.2.0; PR #7 merged |\n| Original C10 human-pose line art | Planned in the original blueprint; not implemented |
 | Ordinary AI multi-file library | Implemented in this package builder; ChatGPT recognition 16/16, one limited generation test; Codex end-to-end not yet verified |
 | Lookset D2 export | Implemented; structure and readback validated, not full commercial workflow validation |
 | Face-casting design guidance | Integrated with Evals 19–23; actual fine nose-tip edit target not passed |
