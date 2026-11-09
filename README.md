@@ -1,30 +1,36 @@
 # model-cast
 
-**Create an original AI fashion model, establish a reusable identity, and hand off a structured visual reference library.**
+**Create an original AI fashion model, establish a reusable identity, and hand off a visual reference library.**
 
 [简体中文](README.zh-CN.md) · **English**
 
-model-cast is an open-source creation-and-handoff Skill for original adult fictional e-commerce models. It guides casting, face/body identity approval, visual-reference preparation, and handoff to downstream AI tools.
+model-cast is an open-source Skill for creating original adult fictional e-commerce models and preparing their reusable visual references.
 
 It is **not** an image-generation service, virtual try-on system, clothing-design tool, or commercial photography pipeline. Final image generation and garment fidelity depend on the downstream tools and the user's workflow.
 
-## What you get
+## Final deliverables
 
-- An original adult fictional model, with a casting brief and identity record.
-- A visual reference library for identity, body views, selected actions, and camera/framing.
-- A multi-file handoff for ordinary ChatGPT/Codex use.
-- A separate Lookset D2 adapter.
+This repository gives you the Skill, its reference workflow, and a public example of the resulting assets:
 
-## Visual reference system
+- **The model-cast Skill** — casting, identity approval, asset preparation, and handoff workflow in [`skills/model-cast/`](skills/model-cast/).
+- **C6 model reference set** — 12 model views plus three selected action/expression examples. The [Yuning overview](docs/assets/showcase/yuning-c6-angle-overview.png) shows the delivered view set.
+- **N2 camera/framing guide** — 12 grey, faceless mannequin views for camera direction and crop: [view the N2 guide](docs/assets/showcase/n2-grey-mannequin-camera-guide.png).
+- **C10 pose supplement** — three optional grey mannequin pose references: [side walking](docs/assets/c10/C10-01-Walk-Side.png) · [side sitting](docs/assets/c10/C10-02-Sit-Side.png) · [hands-in-pockets standing](docs/assets/c10/C10-03-Hands-In-Pockets.png). These were added after v0.2.0 to current `main`; they are not part of the v0.2.0 release archive or existing V3.0 seller package.
+- **ChatGPT/Codex multi-file library workflow** — builder, file index, and upload instructions for handing off the selected visual references.
+- **Lookset D2 adapter** — a separate export path for the Lookset workflow.
 
-| Asset | Purpose | Not responsible for |
-|---|---|---|
-| **C6** | Model identity, face, and body proportions | Specifying a new pose or camera angle |
-| **N2** | Camera direction, framing, and crop, using grey faceless mannequins | Model identity or action-pose control |
-| **C10** | Optional action and limb-pose references, using the same grey mannequin style | Identity, clothing design, or garment fidelity |
-| **Product image** | User-provided product appearance reference for downstream generation | Model identity |
+The Yuning images in this README are an AI-generated fictional model example, not a photograph of a real person. The Owner authorized the selected images for this public showcase.
 
-Use the smallest relevant reference set. C6 remains the identity authority; C10 only guides pose; N2 only guides camera/framing. C10 is a post-v0.2.0 supplement on current `main`, not part of the immutable v0.2.0 release archive or the existing V3.0 seller package. See [C10 usage](docs/C10-USAGE.md).
+## Use the references
+
+| Asset | Use it for |
+|---|---|
+| **C6** | Model identity, face, and body proportions |
+| **N2** | Camera direction, framing, and crop |
+| **C10** | Optional action and limb-pose guidance |
+| **Product image** | User-provided product appearance reference for downstream generation |
+
+Use the smallest relevant reference set. C6 remains the identity authority; C10 only guides pose; N2 only guides camera/framing. None of these assets guarantees garment fidelity in the final generated image.
 
 ## Quick start
 
@@ -45,15 +51,11 @@ Install only `skills/model-cast` into your supported agent skill directory. Back
 
 ### 3. Start a project
 
-Try this prompt:
-
 > Use model-cast to create an original adult virtual fashion model for my product line. First inspect the inputs and propose the casting plan; do not generate images until I approve.
 
 Image generation requires the host's native image capability, account access, and explicit user authorization. This Skill does not bundle an image model or provide generation credits.
 
 ## Example: Yuning
-
-Yuning is an AI-generated fictional model, not a photograph of a real person. The Owner authorized the selected images below for this public project showcase.
 
 | Face identity reference | Approved front full-body reference |
 |---|---|
@@ -83,31 +85,25 @@ The index explains each asset and helps the AI select the smallest relevant refe
 
 Use the separate D2 adapter: P3-2 identity reference, model supplements 01–12, and `model.json`. Do not automatically add N2, C10, or ordinary-user instructions to D2. Lookset owns its separate pose planning, garment editing, photography workflow, and commercial QA.
 
-## Capability and validation status
+## What has been verified
 
-| Area | Current status |
-|---|---|
-| C1–C8 and C11 model-creation workflow | Implemented; workflow and code checks passed |
-| C6 identity approval and visual references | Implemented; final identity approval depends on Owner review |
-| N2 12-view grey mannequin guide | Generated and self-checked |
-| C10 three-pose supplement | Implemented on current `main` after v0.2.0; ChatGPT pose-generation examples recorded. Identity preservation is qualitative, not independently verified |
-| ChatGPT multi-file library | Implemented; recognition test identified 16/16 assets; generation evidence is limited |
-| Codex multi-file end-to-end handoff | Not verified |
-| Lookset D2 export | Implemented; package structure and readback validated, not the complete commercial workflow |
-| Face-casting fine local edits | Not established as reliable; practical nose-tip target was not accepted |
+- Core model-creation workflow and package scripts: implemented; automated tests passed.
+- C6: reference set generated and Owner-reviewed.
+- N2: 12-view grey mannequin guide generated and self-checked.
+- C10: three pose references are on current `main`; ChatGPT pose-generation examples were recorded. Identity preservation is qualitative, not independently verified.
+- ChatGPT multi-file library: recognition test identified 16/16 assets; generation evidence is limited.
+- Codex local-folder-to-image-tool handoff: not verified.
+- Lookset D2: package structure and readback validated; the complete commercial workflow is not verified.
+- Fine local face editing: not established as reliable; the practical nose-tip target was not accepted.
 
 Automated tests validate scripts, manifests, package contents, and synthetic fixtures. They do not prove generated-image quality, identity preservation, garment fidelity, or Owner acceptance.
 
 ## Release and project documents
 
 - **Formal source release:** [v0.2.0](https://github.com/denggui-ai/model-cast/releases/tag/v0.2.0). C10 was added later to current `main`; the v0.2.0 tag/archive remains unchanged.
-- [Public project status](docs/PROJECT-STATUS.md)
-- [Release notes and post-release history](docs/RELEASE-NOTES.md)
-- [C10 usage specification](docs/C10-USAGE.md)
-- [Public POC results](docs/POC-RESULTS.md)
-- [Development Protocol](docs/DEVELOPMENT-PROTOCOL.md)
-- [Project Adapter](docs/PROJECT-ADAPTER.md)
-- [Third-party notices](skills/model-cast/THIRD_PARTY_NOTICES.md)
+- [Public project status](docs/PROJECT-STATUS.md) · [Release notes](docs/RELEASE-NOTES.md)
+- [C10 usage specification](docs/C10-USAGE.md) · [Public POC results](docs/POC-RESULTS.md)
+- [Development Protocol](docs/DEVELOPMENT-PROTOCOL.md) · [Project Adapter](docs/PROJECT-ADAPTER.md)
 
 ## Validation
 
@@ -116,7 +112,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider
 git diff --check
 ```
 
-The full automated suite has passed 242 tests on the verified project snapshot. The full workflow is currently verified on macOS; Python 3.10+ is required, and `crop.py` uses the system `sips` utility.
+The verified project snapshot passed 242 automated tests. The full workflow is currently verified on macOS; Python 3.10+ is required, and `crop.py` uses the system `sips` utility.
 
 ## License
 
