@@ -8,18 +8,41 @@ model-cast 是一个开源 Skill，用于创建原创成年虚构电商模特，
 
 它**不是**生图服务、虚拟试穿系统、服装设计工具或商业摄影流水线。最终图像生成和服装还原效果取决于下游工具及用户工作流。
 
-## 最终交付物
+## 项目最终交付什么
 
-这个仓库交付 Skill、配套参考工作流，以及公开展示的实际资产示例：
+核心产出是：**一个身份经过确认的原创 AI 时尚模特，以及一套可反复使用的人物视觉参考资料。** 灰色 3D 人偶是辅助参考，用来表达镜头和姿势，不是模特本人。
 
-- **model-cast Skill** —— 选角、身份确认、资料准备和交付流程：[`skills/model-cast/`](skills/model-cast/)。
-- **C6 模特参考资料** —— 12 个模特视角和 3 个动作/表情示例：[语宁 C6 视角总览](docs/assets/showcase/yuning-c6-angle-overview.png)。
-- **N2 镜头/构图参考** —— 12 张灰色无脸人偶图：[查看 N2 总览](docs/assets/showcase/n2-grey-mannequin-camera-guide.png)。
-- **C10 姿势补充** —— 3 张可选参考：[侧面行走](docs/assets/c10/C10-01-Walk-Side.png) · [侧面坐姿](docs/assets/c10/C10-02-Sit-Side.png) · [双手插兜](docs/assets/c10/C10-03-Hands-In-Pockets.png)。
-- **ChatGPT/Codex 多文件交付工作流** —— 资料包构建脚本、索引和上传说明。
-- **Lookset D2 适配器** —— 独立导出路径。
+### 1. 模特与人物身份资料 — C6
+
+语宁是 AI 生成的虚构模特，不是真人照片。Owner 已授权将以下选定图片用于本项目公开展示。
+
+| 面部身份 | 已确认的正面全身 |
+|---|---|
+| ![语宁面部身份](docs/assets/showcase/yuning-face-identity.png) | ![语宁正面全身](docs/assets/showcase/yuning-fullbody-front.png) |
+
+完整 C6 资料包含 12 个模特视角和 3 个选定的动作/表情示例：
+
+![C6 模特视角与动作示例](docs/assets/showcase/yuning-c6-angle-overview.png)
+
+### 2. 镜头与构图参考 — N2
+
+N2 使用**灰色无脸 3D 人偶**表达相机方向、观察角度、景别和裁切。它没有脸、头发和服装，因此不会与 C6 的人物身份参考混淆。
+
+![N2 灰色 3D 人偶镜头参考](docs/assets/showcase/n2-grey-mannequin-camera-guide.png)
+
+### 3. 动作与身体姿势参考 — C10
+
+C10 与 N2 使用**同一套灰色 3D 人偶视觉风格**，但表达的是身体动作和四肢位置。目前提供三种可选姿势：
+
+| 侧面行走 | 侧面坐姿 | 双手插兜 |
+|---|---|---|
+| ![C10 侧面行走人偶](docs/assets/c10/C10-01-Walk-Side.png) | ![C10 侧面坐姿人偶](docs/assets/c10/C10-02-Sit-Side.png) | ![C10 双手插兜人偶](docs/assets/c10/C10-03-Hands-In-Pockets.png) |
 
 C10 是 v0.2.0 发布后加入当前 `main` 的补充，不属于 v0.2.0 Release 归档或现有 V3.0 卖家资料包。
+
+### 4. 可实际使用的资料交付
+
+仓库还包含 model-cast Skill、ChatGPT/Codex 多文件资料库构建工具与索引，以及独立的 Lookset D2 适配器。卖家资料包的完整资料库包含 12 张模特视角图、3 张动作/表情示例、N2、`START-HERE.md` 和 `asset-index.json`。
 
 ## 视觉参考体系
 
