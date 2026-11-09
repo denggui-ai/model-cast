@@ -1,77 +1,34 @@
 # model-cast
 
-**Create an original AI fashion model, establish her identity, and deliver a reusable visual asset library.**
+**Create an original AI fashion model, establish a reusable identity, and hand off a structured visual reference library.**
 
-`model-cast` is a creation-and-handoff Skill for original adult fictional e-commerce models. It covers casting, face design and identity approval, model-view/action assets, a camera-angle guide, and two downstream handoff paths. It does **not** perform ongoing garment try-on, clothing design, or commercial product photography; those tasks belong to the user's downstream AI workflow or to Lookset.
+[简体中文](README.zh-CN.md) · **English**
 
-## What it creates
+model-cast is an open-source creation-and-handoff Skill for original adult fictional e-commerce models. It guides casting, face/body identity approval, visual-reference preparation, and handoff to downstream AI tools.
 
-1. **An original model** — casting brief, candidate selection, face/body identity approval, and an identity record.
-2. **A visual reference set** — core identity images, supplementary model angles, selected action/expression examples, and the N2 faceless mannequin camera/framing guide.
-3. **A reusable handoff** — an ordinary ChatGPT/Codex multi-file library and a separate Lookset D2 adapter.
+It is **not** an image-generation service, virtual try-on system, clothing-design tool, or commercial photography pipeline. Final image generation and garment fidelity depend on the downstream tools and the user's workflow.
 
-## Showcase: Yuning
+## What you get
 
-The following is an AI-generated fictional model case, not a photograph of a real person. The Owner authorized these selected images for this public project showcase.
+- An original adult fictional model, with a casting brief and identity record.
+- A visual reference library for identity, body views, selected actions, and camera/framing.
+- A multi-file handoff for ordinary ChatGPT/Codex use.
+- A separate Lookset D2 adapter.
 
-### Identity and model views
+## Visual reference system
 
-| Face identity reference | Approved front full-body reference |
-|---|---|
-| ![Yuning face identity](docs/assets/showcase/yuning-face-identity.png) | ![Yuning front full-body](docs/assets/showcase/yuning-fullbody-front.png) |
+| Asset | Purpose | Not responsible for |
+|---|---|---|
+| **C6** | Model identity, face, and body proportions | Specifying a new pose or camera angle |
+| **N2** | Camera direction, framing, and crop, using grey faceless mannequins | Model identity or action-pose control |
+| **C10** | Optional action and limb-pose references, using the same grey mannequin style | Identity, clothing design, or garment fidelity |
+| **Product image** | User-provided product appearance reference for downstream generation | Model identity |
 
-The C6 overview documents 12 model views and three action/expression examples. Owner visual feedback accepted the 13 supplementary outputs. Some views do not show a face; those are body/framing references, not facial-identity proof.
+Use the smallest relevant reference set. C6 remains the identity authority; C10 only guides pose; N2 only guides camera/framing. C10 is a post-v0.2.0 supplement on current `main`, not part of the immutable v0.2.0 release archive or the existing V3.0 seller package. See [C10 usage](docs/C10-USAGE.md).
 
-![Yuning C6 model-view overview](docs/assets/showcase/yuning-c6-angle-overview.png)
+## Quick start
 
-### N2 camera/framing guide
-
-N2 contains 12 faceless, hairless, clothing-free grey mannequin views. It illustrates camera direction and framing/crop; it is not Yuning, not a pose line drawing, not a clothing drawing, and not an image-edit base.
-
-![N2 grey mannequin camera guide](docs/assets/showcase/n2-grey-mannequin-camera-guide.png)
-
-### What is not claimed
-
-- C10 was not included in v0.2.0. A separate post-release grey-mannequin pose supplement (three optional references) was added to `main` in PR #7; see `docs/C10-USAGE.md` for scope and validation limits.
-- The V0.2 face-casting design guidance and Evals 19–23 are selectively integrated. The two-image practical nose-tip test did not clearly achieve its target; fine local facial editing is not claimed as reliable. The older V0.2 branch remains separate and is not merged wholesale.
-- C5's three-product trial was an internal identity-continuity check. It is not evidence of reliable garment fidelity or a public try-on feature.
-- D2 passed package structure/export/readback validation. That is not a claim that the complete Lookset commercial image workflow has been independently validated with this model.
-
-## Two downstream paths
-
-### A. Ordinary AI use — ChatGPT or Codex
-
-The seller pack contains a folder named `4_完整AI资料库（多文件上传）` / `4_AI_Model_Library_MultiUpload`. Select all files in that folder and upload them together. It contains 12 real model views (including the four core identity anchors), three accepted examples (walking, sitting, natural smile), the N2 grey mannequin camera/framing guide, `START-HERE.md`, and `asset-index.json`.
-
-The index tells the AI what each file is for and when to use it. The AI should inspect the files, select the smallest relevant reference set for the user's natural-language task, and say which files it selected. The four-image folder `2_上传给AI` / `2_Upload_to_AI` remains as a lightweight core set for tasks that need only the main identity anchors.
-
-**Important host limitation:** reading or selecting an uploaded image does not prove that a downstream image-generation/editing tool received it as a reference. ChatGPT's multi-file recognition test identified 16/16 assets; one side-view generation test preserved framing/body/outfit reasonably well, but did not conclusively prove independent identity control from both references. Codex local-folder behavior has not yet received the same end-to-end test. If the host cannot pass the selected images to its image tool, it must ask the user to attach those images directly rather than pretending they were used.
-
-### B. Lookset integration
-
-Use the separate D2 adapter: P3-2 identity reference, model supplements 01–12, and `model.json`. Do not automatically add N2, C10 pose references, or ordinary-user instructions to D2. Lookset owns its own pose planning, garment editing, photography workflow, and commercial QA.
-
-## Capability status
-
-| Capability | Status |
-|---|---|
-| C1–C8 and C11 model-creation workflow | Implemented; workflow and code checks passed |
-| Face/body identity approval and identity record | Implemented; depends on Owner review |
-| C6 12 model views + 3 action/expression examples | Generated; Owner accepted; views without faces are not face-identity proof |
-| N2 12-view grey mannequin guide | Generated and self-checked; included as a visual guide |
-| C10 pose supplement | Three optional grey-mannequin pose references implemented after v0.2.0; see validation limits in `docs/C10-USAGE.md` |
-| Ordinary AI multi-file library | Implemented in this package builder; ChatGPT recognition 16/16, one limited generation test; Codex end-to-end not yet verified |
-| Lookset D2 export | Implemented; structure and readback validated, not full commercial workflow validation |
-| Face-casting design guidance | Integrated with Evals 19–23; actual fine nose-tip edit target not passed |
-
-## POC evidence and optional pose guidance
-
-- [Public POC results](docs/POC-RESULTS.md) summarizes ZIP reading, direct multi-file recognition, minimum-reference selection, the limited side-view generation test, and the Codex timeout result. It separates observed outcomes from unverified host behavior and excludes private RUN records and source images.
-- [C10 pose-guide usage specification](docs/C10-USAGE.md) defines how optional pose references differ from C6 identity references and N2 camera/framing references. The three-image C10 set is a post-v0.2.0 supplement and is not included in the v0.2.0 release.
-
-**Scope boundary:** model-cast provides model identity and pose references. Final image generation, garment fidelity and commercial image quality depend on downstream AI tools and the user's workflow. model-cast does not guarantee garment reproduction or produce the final commercial image.
-
-## Install
+### 1. Install
 
 ```sh
 git clone https://github.com/denggui-ai/model-cast.git
@@ -82,13 +39,75 @@ python3 -m pip install -r requirements-dev.txt
 shasum -a 256 -c SHA256SUMS
 ```
 
-Install only `skills/model-cast` into your supported agent skill directory. Back up any existing installation first; the repository does not overwrite it automatically.
+### 2. Install the Skill
 
-Start with:
+Install only `skills/model-cast` into your supported agent skill directory. Back up any existing installation first; this repository does not overwrite an existing installation automatically.
+
+### 3. Start a project
+
+Try this prompt:
 
 > Use model-cast to create an original adult virtual fashion model for my product line. First inspect the inputs and propose the casting plan; do not generate images until I approve.
 
-Python 3.10+ is required. The full workflow is currently verified on macOS; `crop.py` uses `sips`. Image generation requires the host's native image capability, account access, and explicit user authorization. This Skill does not bundle an image model or provide image-generation credits.
+Image generation requires the host's native image capability, account access, and explicit user authorization. This Skill does not bundle an image model or provide generation credits.
+
+## Example: Yuning
+
+Yuning is an AI-generated fictional model, not a photograph of a real person. The Owner authorized the selected images below for this public project showcase.
+
+| Face identity reference | Approved front full-body reference |
+|---|---|
+| ![Yuning face identity](docs/assets/showcase/yuning-face-identity.png) | ![Yuning front full-body](docs/assets/showcase/yuning-fullbody-front.png) |
+
+The C6 overview documents 12 model views and three action/expression examples. Owner visual feedback accepted the 13 supplementary outputs. Views without a visible face are body/framing references, not facial-identity proof.
+
+![Yuning C6 model-view overview](docs/assets/showcase/yuning-c6-angle-overview.png)
+
+### N2 camera/framing guide
+
+N2 contains 12 faceless, hairless, clothing-free grey mannequin views. It communicates camera direction and framing/crop; it is not Yuning, a clothing drawing, or an image-edit base.
+
+![N2 grey mannequin camera guide](docs/assets/showcase/n2-grey-mannequin-camera-guide.png)
+
+## Downstream workflows
+
+### ChatGPT or Codex
+
+The seller pack includes `4_完整AI资料库（多文件上传）` / `4_AI_Model_Library_MultiUpload`. Upload the files together when using the full library. It contains 12 model views (including four core identity anchors), three accepted action/expression examples, N2, `START-HERE.md`, and `asset-index.json`.
+
+The index explains each asset and helps the AI select the smallest relevant reference set. A four-image lightweight set remains available in `2_上传给AI` / `2_Upload_to_AI`.
+
+**Host limitation:** recognizing or selecting an uploaded image does not prove that a downstream image-generation/editing tool received it as a reference. ChatGPT recognized 16/16 assets in a multi-file test, and limited pose-generation checks were performed. Independent identity control from multiple references is not conclusively established. Codex local-folder-to-image-tool handoff remains unverified. If a host cannot pass selected images to its image tool, it must ask for the images to be attached directly rather than claim they were used.
+
+### Lookset D2
+
+Use the separate D2 adapter: P3-2 identity reference, model supplements 01–12, and `model.json`. Do not automatically add N2, C10, or ordinary-user instructions to D2. Lookset owns its separate pose planning, garment editing, photography workflow, and commercial QA.
+
+## Capability and validation status
+
+| Area | Current status |
+|---|---|
+| C1–C8 and C11 model-creation workflow | Implemented; workflow and code checks passed |
+| C6 identity approval and visual references | Implemented; final identity approval depends on Owner review |
+| N2 12-view grey mannequin guide | Generated and self-checked |
+| C10 three-pose supplement | Implemented on current `main` after v0.2.0; ChatGPT pose-generation examples recorded. Identity preservation is qualitative, not independently verified |
+| ChatGPT multi-file library | Implemented; recognition test identified 16/16 assets; generation evidence is limited |
+| Codex multi-file end-to-end handoff | Not verified |
+| Lookset D2 export | Implemented; package structure and readback validated, not the complete commercial workflow |
+| Face-casting fine local edits | Not established as reliable; practical nose-tip target was not accepted |
+
+Automated tests validate scripts, manifests, package contents, and synthetic fixtures. They do not prove generated-image quality, identity preservation, garment fidelity, or Owner acceptance.
+
+## Release and project documents
+
+- **Formal source release:** [v0.2.0](https://github.com/denggui-ai/model-cast/releases/tag/v0.2.0). C10 was added later to current `main`; the v0.2.0 tag/archive remains unchanged.
+- [Public project status](docs/PROJECT-STATUS.md)
+- [Release notes and post-release history](docs/RELEASE-NOTES.md)
+- [C10 usage specification](docs/C10-USAGE.md)
+- [Public POC results](docs/POC-RESULTS.md)
+- [Development Protocol](docs/DEVELOPMENT-PROTOCOL.md)
+- [Project Adapter](docs/PROJECT-ADAPTER.md)
+- [Third-party notices](skills/model-cast/THIRD_PARTY_NOTICES.md)
 
 ## Validation
 
@@ -97,14 +116,8 @@ PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider
 git diff --check
 ```
 
-Automated tests validate scripts, manifests, package contents, and synthetic fixtures. They do not prove generated-image quality or user acceptance. See [verification notes](docs/VERIFICATION.md).
+The full automated suite has passed 242 tests on the verified project snapshot. The full workflow is currently verified on macOS; Python 3.10+ is required, and `crop.py` uses the system `sips` utility.
 
-## Project documents and licensing
-
-- [Development Protocol](docs/DEVELOPMENT-PROTOCOL.md)
-- [Project Adapter](docs/PROJECT-ADAPTER.md)
-- [Public Project Status](docs/PROJECT-STATUS.md)
-- [Release notes](docs/RELEASE-NOTES.md)
-- [Third-party notices](skills/model-cast/THIRD_PARTY_NOTICES.md)
+## License
 
 Original project code and documentation use MIT. Vendored Lookset files retain Apache-2.0 and their upstream notices. Public example images are authorized AI-generated project assets; this does not grant rights to unrelated user assets.
