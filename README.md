@@ -8,18 +8,41 @@ model-cast is an open-source creation-and-handoff Skill for original adult ficti
 
 It is **not** an image-generation service, virtual try-on system, clothing-design tool, or commercial photography pipeline. Final image generation and garment fidelity depend on the downstream tools and the user's workflow.
 
-## Final deliverables
+## What the project delivers
 
-This repository gives you the Skill, its reference workflow, and a public example of the resulting assets:
+The main product is **an original AI fashion model with an approved identity and a reusable visual reference set**. The grey 3D mannequins are supporting guides for camera and pose—not the model itself.
 
-- **The model-cast Skill** — casting, identity approval, asset preparation, and handoff workflow in [`skills/model-cast/`](skills/model-cast/).
-- **C6 model reference set** — 12 model views plus three selected action/expression examples. The [Yuning overview](docs/assets/showcase/yuning-c6-angle-overview.png) shows the delivered view set.
-- **N2 camera/framing guide** — 12 grey, faceless mannequin views: [view the N2 guide](docs/assets/showcase/n2-grey-mannequin-camera-guide.png).
-- **C10 pose supplement** — three optional references: [walking](docs/assets/c10/C10-01-Walk-Side.png) · [sitting](docs/assets/c10/C10-02-Sit-Side.png) · [hands-in-pockets](docs/assets/c10/C10-03-Hands-In-Pockets.png).
-- **ChatGPT/Codex multi-file handoff workflow** — builder, index, and upload instructions.
-- **Lookset D2 adapter** — a separate export path.
+### 1. The model and her visual identity — C6
 
-C10 was added after v0.2.0 to current `main`; it is not part of the v0.2.0 release archive or existing V3.0 seller package.
+Yuning is an AI-generated fictional model, not a photograph of a real person. The Owner authorized these selected images for this public showcase.
+
+| Face identity | Approved front full-body |
+|---|---|
+| ![Yuning face identity](docs/assets/showcase/yuning-face-identity.png) | ![Yuning full-body front](docs/assets/showcase/yuning-fullbody-front.png) |
+
+The complete C6 set contains 12 model views and three selected action/expression examples:
+
+![C6 model views and action examples](docs/assets/showcase/yuning-c6-angle-overview.png)
+
+### 2. Camera and framing guide — N2
+
+N2 uses **grey, faceless 3D mannequins** to show camera direction, viewing angle, framing, and crop. It deliberately has no face, hair, or clothing, so it does not compete with C6 as the identity reference.
+
+![N2 grey 3D mannequin camera guide](docs/assets/showcase/n2-grey-mannequin-camera-guide.png)
+
+### 3. Action and body-pose guides — C10
+
+C10 uses the **same grey 3D mannequin visual style** as N2, but demonstrates body action and limb positions. The current supplement contains three optional poses:
+
+| Side walking | Side sitting | Hands-in-pockets |
+|---|---|---|
+| ![C10 side walking mannequin](docs/assets/c10/C10-01-Walk-Side.png) | ![C10 side sitting mannequin](docs/assets/c10/C10-02-Sit-Side.png) | ![C10 hands-in-pockets mannequin](docs/assets/c10/C10-03-Hands-In-Pockets.png) |
+
+C10 was added to current `main` after v0.2.0. It is not part of the v0.2.0 release archive or the existing V3.0 seller package.
+
+### 4. The usable handoff
+
+The repository also includes the model-cast Skill, the multi-file ChatGPT/Codex library builder and index, and a separate Lookset D2 adapter. The seller pack's full library includes 12 model views, three action/expression examples, N2, `START-HERE.md`, and `asset-index.json`.
 
 ## Visual reference system
 
