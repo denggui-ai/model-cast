@@ -20,3 +20,11 @@ The historical `v0.1.0-beta.1` prerelease remains unchanged.
 - C10 human-pose line art remains unimplemented and is not included. N2 remains the existing grey mannequin camera/framing guide.
 - Verification: 242 automated tests passed on the exact merged main commit; all tracked distribution files pass SHA-256 verification. Git metadata is excluded from `SHA256SUMS` because `.git` is checkout/worktree-specific.
 - Codex multi-file end-to-end behavior remains unverified; ChatGPT's one side-view generation test did not conclusively prove independent identity control from both references.
+
+
+## 2026-11-09 — post-v0.2.0 C10 supplement
+
+- PR #7: add three optional grey-mannequin pose references (side walking, side sitting, hands-in-pockets standing), editable SVG sources, and C6/C10/N2 usage boundaries.
+- PR #9: record ChatGPT pose-generation checks and correct current README/project status.
+- Pose execution was visually checked for the three examples; identity preservation remains qualitative and has not been independently verified.
+- These are updates to current `main`, not changes to the v0.2.0 tag or release archive.
