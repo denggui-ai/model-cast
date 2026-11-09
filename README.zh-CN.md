@@ -12,13 +12,24 @@ model-cast 是一个开源 Skill，用于创建原创成年虚构时尚模特，
 
 语宁是 AI 生成的虚构模特，不是真人照片。Owner 已授权将以下选定图片用于本项目公开展示。
 
-![语宁：已确认的正面全身模特参考](docs/assets/showcase/yuning-fullbody-front.png)
+<table>
+  <tr>
+    <td width="50%" align="center">
+      <img src="docs/assets/showcase/yuning-face-identity.png" width="100%" alt="语宁面部身份参考"/>
+      <br/><strong>面部身份</strong>
+    </td>
+    <td width="50%" align="center">
+      <img src="docs/assets/showcase/yuning-fullbody-front.png" width="100%" alt="语宁正面全身参考"/>
+      <br/><strong>正面全身</strong>
+    </td>
+  </tr>
+</table>
 
-| 面部身份 | 完整模特视角资料 |
-|---|---|
-| ![语宁面部身份](docs/assets/showcase/yuning-face-identity.png) | ![C6 模特视角与动作示例](docs/assets/showcase/yuning-c6-angle-overview.png) |
+### C6 — 完整模特视角资料
 
-C6 资料包含 12 个模特视角和 3 个选定的动作/表情示例。C6 是人物身份的主要依据，用于表达模特的面部、身体比例及已确认的模特视角。
+C6 包含 12 个模特视角和 3 个选定的动作/表情示例。它是人物身份的主要依据，用于表达模特的面部、身体比例及已确认的模特视角。
+
+![C6 完整模特视角与动作/表情资料](docs/assets/showcase/yuning-c6-angle-overview.png)
 
 ## 辅助视觉参考
 
@@ -28,15 +39,17 @@ C6 资料包含 12 个模特视角和 3 个选定的动作/表情示例。C6 是
 
 ![N2 灰色 3D 人偶镜头参考](docs/assets/showcase/n2-grey-mannequin-camera-guide.png)
 
-N2 用于表达相机方向、观察角度、景别和裁切范围。
+N2 用于表达相机方向、观察角度、景别和裁切范围。它只在镜头或构图需要进一步明确时使用。
 
 ### C10 — 可选姿势参考
 
-| 侧面行走 | 侧面坐姿 | 双手插兜 |
-|---|---|---|
-| ![C10 侧面行走人偶](docs/assets/c10/C10-01-Walk-Side.png) | ![C10 侧面坐姿人偶](docs/assets/c10/C10-02-Sit-Side.png) | ![C10 双手插兜人偶](docs/assets/c10/C10-03-Hands-In-Pockets.png) |
+C10 用于表达 C6 尚未直接展示的身体动作和四肢位置。它是独立的可选补充，不属于标准 Skill 工作流阶段，也不包含在当前 16 张图片的正式资料库中。
 
-当 C6 没有直接展示所需姿势时，才选择相应的 C10 参考。C10 是独立的可选补充，不属于标准 Skill 工作流阶段，也不包含在当前 16 张图片的正式资料库中。
+目前有三种姿势参考，可按需打开原图：
+
+- [侧面行走（PNG）](docs/assets/c10/C10-01-Walk-Side.png) · [SVG 源文件](docs/assets/c10/C10-01-Walk-Side.svg)
+- [侧面坐姿（PNG）](docs/assets/c10/C10-02-Sit-Side.png) · [SVG 源文件](docs/assets/c10/C10-02-Sit-Side.svg)
+- [双手插兜（PNG）](docs/assets/c10/C10-03-Hands-In-Pockets.png) · [SVG 源文件](docs/assets/c10/C10-03-Hands-In-Pockets.svg)
 
 **三者职责不同：** C6 说明人物是谁；C10 说明身体如何动作；N2 说明镜头如何取景。按任务选择必要参考即可。具体选择方式见 [C10 使用规范](docs/C10-USAGE.md)。
 
