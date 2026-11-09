@@ -92,24 +92,6 @@ Try this prompt:
 
 Image generation requires the host's native image capability, account access, and explicit user authorization. This Skill does not bundle an image model or provide generation credits.
 
-## Example: Yuning
-
-Yuning is an AI-generated fictional model, not a photograph of a real person. The Owner authorized the selected images below for this public project showcase.
-
-| Face identity reference | Approved front full-body reference |
-|---|---|
-| ![Yuning face identity](docs/assets/showcase/yuning-face-identity.png) | ![Yuning front full-body](docs/assets/showcase/yuning-fullbody-front.png) |
-
-The C6 overview documents 12 model views and three action/expression examples. Owner visual feedback accepted the 13 supplementary outputs. Views without a visible face are body/framing references, not facial-identity proof.
-
-![Yuning C6 model-view overview](docs/assets/showcase/yuning-c6-angle-overview.png)
-
-### N2 camera/framing guide
-
-N2 contains 12 faceless, hairless, clothing-free grey mannequin views. It communicates camera direction and framing/crop; it is not Yuning, a clothing drawing, or an image-edit base.
-
-![N2 grey mannequin camera guide](docs/assets/showcase/n2-grey-mannequin-camera-guide.png)
-
 ## Downstream workflows
 
 ### ChatGPT or Codex
