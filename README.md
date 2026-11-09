@@ -8,12 +8,18 @@ model-cast is an open-source creation-and-handoff Skill for original adult ficti
 
 It is **not** an image-generation service, virtual try-on system, clothing-design tool, or commercial photography pipeline. Final image generation and garment fidelity depend on the downstream tools and the user's workflow.
 
-## What you get
+## Final deliverables
 
-- An original adult fictional model, with a casting brief and identity record.
-- A visual reference library for identity, body views, selected actions, and camera/framing.
-- A multi-file handoff for ordinary ChatGPT/Codex use.
-- A separate Lookset D2 adapter.
+This repository gives you the Skill, its reference workflow, and a public example of the resulting assets:
+
+- **The model-cast Skill** — casting, identity approval, asset preparation, and handoff workflow in [`skills/model-cast/`](skills/model-cast/).
+- **C6 model reference set** — 12 model views plus three selected action/expression examples. The [Yuning overview](docs/assets/showcase/yuning-c6-angle-overview.png) shows the delivered view set.
+- **N2 camera/framing guide** — 12 grey, faceless mannequin views: [view the N2 guide](docs/assets/showcase/n2-grey-mannequin-camera-guide.png).
+- **C10 pose supplement** — three optional references: [walking](docs/assets/c10/C10-01-Walk-Side.png) · [sitting](docs/assets/c10/C10-02-Sit-Side.png) · [hands-in-pockets](docs/assets/c10/C10-03-Hands-In-Pockets.png).
+- **ChatGPT/Codex multi-file handoff workflow** — builder, index, and upload instructions.
+- **Lookset D2 adapter** — a separate export path.
+
+C10 was added after v0.2.0 to current `main`; it is not part of the v0.2.0 release archive or existing V3.0 seller package.
 
 ## Visual reference system
 

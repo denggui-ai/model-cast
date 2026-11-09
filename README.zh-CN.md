@@ -8,12 +8,18 @@ model-cast 是一个开源 Skill，用于创建原创成年虚构电商模特，
 
 它**不是**生图服务、虚拟试穿系统、服装设计工具或商业摄影流水线。最终图像生成和服装还原效果取决于下游工具及用户工作流。
 
-## 可以获得什么
+## 最终交付物
 
-- 原创成年虚构模特、选角说明和人物身份记录。
-- 用于身份、身体视角、指定动作及镜头构图的视觉参考资料库。
-- 面向普通 ChatGPT/Codex 使用的多文件资料交付方式。
-- 独立的 Lookset D2 适配器。
+这个仓库交付 Skill、配套参考工作流，以及公开展示的实际资产示例：
+
+- **model-cast Skill** —— 选角、身份确认、资料准备和交付流程：[`skills/model-cast/`](skills/model-cast/)。
+- **C6 模特参考资料** —— 12 个模特视角和 3 个动作/表情示例：[语宁 C6 视角总览](docs/assets/showcase/yuning-c6-angle-overview.png)。
+- **N2 镜头/构图参考** —— 12 张灰色无脸人偶图：[查看 N2 总览](docs/assets/showcase/n2-grey-mannequin-camera-guide.png)。
+- **C10 姿势补充** —— 3 张可选参考：[侧面行走](docs/assets/c10/C10-01-Walk-Side.png) · [侧面坐姿](docs/assets/c10/C10-02-Sit-Side.png) · [双手插兜](docs/assets/c10/C10-03-Hands-In-Pockets.png)。
+- **ChatGPT/Codex 多文件交付工作流** —— 资料包构建脚本、索引和上传说明。
+- **Lookset D2 适配器** —— 独立导出路径。
+
+C10 是 v0.2.0 发布后加入当前 `main` 的补充，不属于 v0.2.0 Release 归档或现有 V3.0 卖家资料包。
 
 ## 视觉参考体系
 
