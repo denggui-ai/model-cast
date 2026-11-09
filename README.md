@@ -21,13 +21,6 @@ This repository gives you the Skill, its reference workflow, and a public exampl
 
 C10 was added after v0.2.0 to current `main`; it is not part of the v0.2.0 release archive or existing V3.0 seller package.
 
-## What you get
-
-- An original adult fictional model, with a casting brief and identity record.
-- A visual reference library for identity, body views, selected actions, and camera/framing.
-- A multi-file handoff for ordinary ChatGPT/Codex use.
-- A separate Lookset D2 adapter.
-
 ## Visual reference system
 
 | Asset | Purpose | Not responsible for |
