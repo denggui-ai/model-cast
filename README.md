@@ -69,6 +69,8 @@ Use the separate D2 adapter: P3-2 identity reference, model supplements 01–12,
 - [Public POC results](docs/POC-RESULTS.md) summarizes ZIP reading, direct multi-file recognition, minimum-reference selection, the limited side-view generation test, and the Codex timeout result. It separates observed outcomes from unverified host behavior and excludes private RUN records and source images.
 - [C10 pose-guide usage specification](docs/C10-USAGE.md) defines how optional pose references differ from C6 identity references and N2 camera/framing references. The three-image C10 set is a post-v0.2.0 supplement and is not included in the v0.2.0 release.
 
+**Scope boundary:** model-cast provides model identity and pose references. Final image generation, garment fidelity and commercial image quality depend on downstream AI tools and the user's workflow. model-cast does not guarantee garment reproduction or produce the final commercial image.
+
 ## Install
 
 ```sh
