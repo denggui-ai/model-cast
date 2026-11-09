@@ -15,7 +15,7 @@ Use one C10 image only when C6 does not already show the required pose. C6 contr
 ## Validation status
 
 - C10-01: one user-provided ChatGPT result clearly showed side-view walking. This supports pose execution, but does not independently prove identity preservation.
-- C10-02 and C10-03: not yet tested in ChatGPT.
+- C10-02: one ChatGPT generation using the two C6 identity references plus this pose guide produced a clear side-seated full-body result. Pose execution passed; identity preservation remains inconclusive.\n- C10-03: the same three-reference ChatGPT generation was executed and returned an image, but the result has not yet received visual review. Do not mark pose acceptance as passed until that review is completed.
 - Codex end-to-end handoff: not tested; not a blocker for this small supplement.
 
 This supplement does not change v0.2.0, does not overwrite V3.0 seller packages, and is not part of Lookset D2.
