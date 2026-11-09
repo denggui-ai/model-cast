@@ -1,36 +1,76 @@
 # model-cast
 
-**Create an original AI fashion model, establish a reusable identity, and hand off a structured visual reference library.**
+**Create an original AI fashion model for a product line — then deliver a reusable set of images that helps AI recognize and reuse that model.**
 
 [简体中文](README.zh-CN.md) · **English**
 
-model-cast is an open-source creation-and-handoff Skill for original adult fictional e-commerce models. It guides casting, face/body identity approval, visual-reference preparation, and handoff to downstream AI tools.
+model-cast starts from the seller's product and casting brief. It helps select an original adult fictional model, get the Owner's approval of her face and body, and prepare a visual reference package for downstream AI work.
 
-It is **not** an image-generation service, virtual try-on system, clothing-design tool, or commercial photography pipeline. Final image generation and garment fidelity depend on the downstream tools and the user's workflow.
+## What you actually get
 
-## Final deliverables
+The end product is **a model identity package and its visual reference library** — not a mannequin, not a set of drawings, and not a finished clothing advertisement.
 
-This repository gives you the Skill, its reference workflow, and a public example of the resulting assets:
+### 1. The model: one approved identity
 
-- **The model-cast Skill** — casting, identity approval, asset preparation, and handoff workflow in [`skills/model-cast/`](skills/model-cast/).
-- **C6 model reference set** — 12 model views plus three selected action/expression examples. The [Yuning overview](docs/assets/showcase/yuning-c6-angle-overview.png) shows the delivered view set.
-- **N2 camera/framing guide** — 12 grey, faceless mannequin views: [view the N2 guide](docs/assets/showcase/n2-grey-mannequin-camera-guide.png).
-- **C10 pose supplement** — three optional references: [walking](docs/assets/c10/C10-01-Walk-Side.png) · [sitting](docs/assets/c10/C10-02-Sit-Side.png) · [hands-in-pockets](docs/assets/c10/C10-03-Hands-In-Pockets.png).
-- **ChatGPT/Codex multi-file handoff workflow** — builder, index, and upload instructions.
-- **Lookset D2 adapter** — a separate export path.
+The Yuning example below shows the kind of identity output: a consistent face reference and an approved full-body reference.
 
-C10 was added after v0.2.0 to current `main`; it is not part of the v0.2.0 release archive or existing V3.0 seller package.
+| Face identity | Approved full-body |
+|---|---|
+| ![Yuning face identity](docs/assets/showcase/yuning-face-identity.png) | ![Yuning full-body](docs/assets/showcase/yuning-fullbody-front.png) |
 
-## Visual reference system
+### 2. The model's visual library
 
-| Asset | Purpose | Not responsible for |
+The identity is expanded into views and selected actions so downstream AI can refer to the same model from more than one angle.
+
+![C6 model views and action examples](docs/assets/showcase/yuning-c6-angle-overview.png)
+
+**C6 delivers:** 12 model views and three selected action/expression examples (walking, sitting, natural smile). These are the model's actual visual references; views without a visible face help with body direction and framing, not facial identity.
+
+### 3. Camera and pose guides
+
+These are supporting guides for the model library. They are not the product's main output and they do not replace the model's real reference photos.
+
+**N2 — camera direction and framing**
+
+![N2 grey mannequin camera guide](docs/assets/showcase/n2-grey-mannequin-camera-guide.png)
+
+N2 uses a faceless grey mannequin to make camera direction, view angle and crop easier to communicate. It is a camera/framing guide — not a model, not a face reference, and not a clothing template.
+
+**C10 — optional body poses**
+
+| Side walking | Side sitting | Hands-in-pockets |
 |---|---|---|
-| **C6** | Model identity, face, and body proportions | Specifying a new pose or camera angle |
-| **N2** | Camera direction, framing, and crop, using grey faceless mannequins | Model identity or action-pose control |
-| **C10** | Optional action and limb-pose references, using the same grey mannequin style | Identity, clothing design, or garment fidelity |
-| **Product image** | User-provided product appearance reference for downstream generation | Model identity |
+| ![C10 walking pose](docs/assets/c10/C10-01-Walk-Side.png) | ![C10 sitting pose](docs/assets/c10/C10-02-Sit-Side.png) | ![C10 hands in pockets pose](docs/assets/c10/C10-03-Hands-In-Pockets.png) |
 
-Use the smallest relevant reference set. C6 remains the identity authority; C10 only guides pose; N2 only guides camera/framing. C10 is a post-v0.2.0 supplement on current `main`, not part of the immutable v0.2.0 release archive or the existing V3.0 seller package. See [C10 usage](docs/C10-USAGE.md).
+C10 uses the same faceless grey-mannequin visual language as N2, but has a different job: it shows limb positions and body action. It was added to `main` after v0.2.0; it is not in the v0.2.0 release archive or existing V3.0 seller package.
+
+## Why this is different
+
+The core value is **not the mannequin style**. It is the end-to-end process of selecting an original model for a product line, locking the approved identity, and handing off a structured set of model images that can be reused.
+
+- **C6 is the model.** It carries the approved face, body proportions and real model views.
+- **N2 is the camera guide.** Its grey mannequin communicates camera direction and framing.
+- **C10 is the pose guide.** Its grey mannequin communicates body action and limb positions.
+- **The product photo is a separate input.** It informs the downstream task about the product; it does not define the model's identity.
+
+The grey mannequin is a practical visual language for camera and pose instructions. It is not the final deliverable and should not be mistaken for the AI model itself.
+
+## What the seller receives
+
+The generated seller package is delivered in Chinese and English, alongside a separate engineering package. Its four folders have distinct jobs:
+
+1. **Read first — `1_给你看`**: usage instructions, model identity card, originality statement, and usage boundaries. This folder is for the owner to review; it is not uploaded as image references.
+2. **Core identity images — `2_上传给AI`**: four essential images (01, 04, 06, 07) for tasks that need a compact identity reference set.
+3. **Lifestyle examples — `3_生活场景图`**: selected walking, sitting, and natural-smile images for direct visual use; these do not replace identity anchors.
+4. **Complete AI library — `4_完整AI资料库（多文件上传）`**: 12 model views, three action materials, the N2 grey mannequin camera guide, `START-HERE.md`, and `asset-index.json` for multi-file ChatGPT/Codex handoff.
+
+The separate **Lookset D2** export is an engineering handoff, not another folder to mix into the ordinary-AI upload set.
+
+## What is included in this public repository
+
+The public repository contains the reusable `skills/model-cast/` Skill, scripts, templates, package-building and validation tools, and the public Yuning examples shown above. Owner-specific generated V3.0 seller packages and private RUN records are not published as public release assets.
+
+model-cast is not an image-generation service, virtual try-on system, clothing-design tool, or commercial photography pipeline. Final image generation and garment fidelity depend on downstream tools and the user's workflow.
 
 ## Quick start
 
@@ -56,24 +96,6 @@ Try this prompt:
 > Use model-cast to create an original adult virtual fashion model for my product line. First inspect the inputs and propose the casting plan; do not generate images until I approve.
 
 Image generation requires the host's native image capability, account access, and explicit user authorization. This Skill does not bundle an image model or provide generation credits.
-
-## Example: Yuning
-
-Yuning is an AI-generated fictional model, not a photograph of a real person. The Owner authorized the selected images below for this public project showcase.
-
-| Face identity reference | Approved front full-body reference |
-|---|---|
-| ![Yuning face identity](docs/assets/showcase/yuning-face-identity.png) | ![Yuning front full-body](docs/assets/showcase/yuning-fullbody-front.png) |
-
-The C6 overview documents 12 model views and three action/expression examples. Owner visual feedback accepted the 13 supplementary outputs. Views without a visible face are body/framing references, not facial-identity proof.
-
-![Yuning C6 model-view overview](docs/assets/showcase/yuning-c6-angle-overview.png)
-
-### N2 camera/framing guide
-
-N2 contains 12 faceless, hairless, clothing-free grey mannequin views. It communicates camera direction and framing/crop; it is not Yuning, a clothing drawing, or an image-edit base.
-
-![N2 grey mannequin camera guide](docs/assets/showcase/n2-grey-mannequin-camera-guide.png)
 
 ## Downstream workflows
 
