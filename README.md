@@ -44,17 +44,6 @@ C10 was added to current `main` after v0.2.0. It is not part of the v0.2.0 relea
 
 The repository also includes the model-cast Skill, the multi-file ChatGPT/Codex library builder and index, and a separate Lookset D2 adapter. The seller pack's full library includes 12 model views, three action/expression examples, N2, `START-HERE.md`, and `asset-index.json`.
 
-## Visual reference system
-
-| Asset | Purpose | Not responsible for |
-|---|---|---|
-| **C6** | Model identity, face, and body proportions | Specifying a new pose or camera angle |
-| **N2** | Camera direction, framing, and crop, using grey faceless mannequins | Model identity or action-pose control |
-| **C10** | Optional action and limb-pose references, using the same grey mannequin style | Identity, clothing design, or garment fidelity |
-| **Product image** | User-provided product appearance reference for downstream generation | Model identity |
-
-Use the smallest relevant reference set. C6 remains the identity authority; C10 only guides pose; N2 only guides camera/framing. C10 is a post-v0.2.0 supplement on current `main`, not part of the immutable v0.2.0 release archive or the existing V3.0 seller package. See [C10 usage](docs/C10-USAGE.md).
-
 ## Quick start
 
 ### 1. Install
@@ -79,24 +68,6 @@ Try this prompt:
 > Use model-cast to create an original adult virtual fashion model for my product line. First inspect the inputs and propose the casting plan; do not generate images until I approve.
 
 Image generation requires the host's native image capability, account access, and explicit user authorization. This Skill does not bundle an image model or provide generation credits.
-
-## Example: Yuning
-
-Yuning is an AI-generated fictional model, not a photograph of a real person. The Owner authorized the selected images below for this public project showcase.
-
-| Face identity reference | Approved front full-body reference |
-|---|---|
-| ![Yuning face identity](docs/assets/showcase/yuning-face-identity.png) | ![Yuning front full-body](docs/assets/showcase/yuning-fullbody-front.png) |
-
-The C6 overview documents 12 model views and three action/expression examples. Owner visual feedback accepted the 13 supplementary outputs. Views without a visible face are body/framing references, not facial-identity proof.
-
-![Yuning C6 model-view overview](docs/assets/showcase/yuning-c6-angle-overview.png)
-
-### N2 camera/framing guide
-
-N2 contains 12 faceless, hairless, clothing-free grey mannequin views. It communicates camera direction and framing/crop; it is not Yuning, a clothing drawing, or an image-edit base.
-
-![N2 grey mannequin camera guide](docs/assets/showcase/n2-grey-mannequin-camera-guide.png)
 
 ## Downstream workflows
 
