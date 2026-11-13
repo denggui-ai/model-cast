@@ -28,3 +28,12 @@ The historical `v0.1.0-beta.1` prerelease remains unchanged.
 - PR #9: record ChatGPT pose-generation checks and correct current README/project status.
 - Pose execution was visually checked for the three examples; identity preservation remains qualitative and has not been independently verified.
 - These are updates to current `main`, not changes to the v0.2.0 tag or release archive.
+
+
+## 2026-11-13 — post-v0.2.0 identity delivery correction
+
+- Define minimal delivery of approved 01/04 originals and connect casting observations to the seller's recorded goals.
+- Check the actual native request's two identity attachment positions against an independently approved C4 source lock before sending; retain C8, D2, Lookset and generation-authorization contracts.
+- Record Owner acceptance of one correct-source identity-reuse image, separately from failed garment QA and unverified cross-product stability.
+- Reuse the unchanged implementation's 256-test result, skill/strict validation, three behavior dry runs and independent DeepSeek review. Claude is unavailable under the Owner-approved exception; closeout commits are marked `[no-cross-check]`.
+- Refresh the checksum manifest for tracked public source files. This source update does not change the v0.2.0 tag/archive or install a runtime.

@@ -29,3 +29,13 @@ The historical `v0.1.0-beta.1` prerelease remains unchanged.
 - Bring the V0.2 face-casting design guide and Evals 19–23 into current main without merging the divergent V0.2 branch wholesale.
 - The guide activates only when the user asks for face aesthetics, casting, or facial edits; it does not alter fixed C2 prompts, workflow state machine, authorization gates, or source-image protection.
 - The practical nose-tip edit target remains not accepted; the guide is not a pixel-level face controller.
+
+## 2026-11-12 — identity delivery correction (unreleased)
+
+- Trigger: a downstream request used byte-valid references from a different model; two approved C4 originals also lacked a defined minimal delivery route.
+- Behavior before: candidate comparison did not require traceable business reasons; full C8 packaging was the only described delivery route; native request identity slots were not checked against approved C4 sources.
+- Behavior after: retain seller goals and distinguish observations from inference, deliver existing 01/04 with concise usage notes when requested, and check actual native request identity slots against an independently established C4 lock before sending.
+- Files changed: `SKILL.md`, `references/identity-delivery.md`, `scripts/check_identity_refs.py`, source evals, and synthetic provenance regression tests.
+- Eval coverage: cases 24–26 cover casting rationale, minimal delivery, and wrong-person inputs despite consistent local hashes; CLI tests cover byte-identical copies, source/copy changes, slot swaps, and uncheckable inputs.
+- Rules avoided: no new generation prompt controls, complete-pack schema, packaging mode, Lookset changes, or automatic generation. Full C8/D2 remain unchanged. The new checker is a host-invoked preflight, not a hook inside Lookset or the image tool.
+- Verification: focused provenance tests pass (14 cases); full-suite, behavior dry-run and independent review results are recorded in the task handoff. No image generation or downstream identity-quality claim.

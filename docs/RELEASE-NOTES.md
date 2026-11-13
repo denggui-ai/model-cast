@@ -24,3 +24,14 @@ The v0.2.0 tag and GitHub Release identify the formal source release. The owner-
 ## Post-release update — 2026-11-09
 
 PR #7 added the C10 grey-mannequin pose supplement (side walking, side sitting, and hands-in-pockets standing) to the current `main` branch. PR #9 documented one ChatGPT generation check per pose and corrected the current README/status wording. C10-02 and C10-03 were visually checked for pose execution. Identity preservation is only qualitatively consistent with the supplied C6 face reference and has not been independently or biometrically verified. These are post-v0.2.0 source updates; the v0.2.0 tag and release assets remain unchanged.
+
+
+## Post-release update — 2026-11-13: approved identity delivery
+
+This source update defines minimal delivery of already approved 01/04 originals, preserves the distinction between seller-provided goals and visual inference, and adds a read-only native-request identity provenance check. The host supplies the approved C4 lock and actual face/body attachment positions; the check rejects mismatched bytes and uncheckable inputs before sending. It is not an automatic hook in Lookset or the image tool and does not verify image content or future output quality.
+
+The unchanged implementation passed 256 automated tests, the skill validator, the strict standard check, three zero-generation behavior dry runs, and independent DeepSeek review. These recorded results are reused for this documentation/checksum closeout. Per the Owner's Claude-unavailable exception, Codex completes the handoff with DeepSeek as the sole independent reviewer and commits marked `[no-cross-check]`; no Claude review pass is claimed.
+
+A separate authorized real-image test used the approved 01/04 originals, and the Owner subsequently recognized the same model and accepted that single identity-reuse result. Garment QA remained unmet. Cross-product, cross-angle and cross-host stability, commercial image acceptance, and the full C5–C8 workflow are not established by this result. Private assets and execution evidence remain outside the public repository.
+
+This update uses the existing source-only channel. The v0.2.0 tag/archive and existing seller packages remain unchanged; publication of source does not install or replace a local runtime.
